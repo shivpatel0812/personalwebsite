@@ -56,53 +56,6 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     }
   };
 
-  const sectionsWithBulletPoints = [
-    "🎯 Project Architecture & System Design",
-    "🤖 AI/ML Pipeline & Vector Search",
-    "💻 Frontend Architecture & UX",
-    "⚙️ Backend API Development",
-    "🗄️ Database Design & Optimization",
-    "🔧 DevOps & Infrastructure",
-    "🔐 Security & Authentication",
-    "🚀 Performance & Scalability",
-    "👥 Collaboration & Team Experience",
-    "Understanding the Architecture",
-    "Scalable AWS based Security Implementation",
-    "Additional measures",
-    "🧠 Summary",
-    "⚙️ Frontend & Deployment",
-    "☁️ Backend Architecture",
-    "🧪 Machine Learning & Validation",
-    "🧠 Motivation",
-    "🏆 Instruction & Support",
-    "📝 Grading & Feedback",
-    "💬 Mentorship & Environment",
-  ];
-
-  const getCondensedSectionName = (fullName: string) => {
-    if (fullName.includes("Frontend")) return "Frontend";
-    if (fullName.includes("Backend")) return "Backend";
-    if (fullName.includes("Database")) return "Database";
-    if (fullName.includes("AI/ML") || fullName.includes("Machine Learning"))
-      return "AI/ML";
-    if (fullName.includes("DevOps")) return "DevOps";
-    if (fullName.includes("Security")) return "Security";
-    if (fullName.includes("Performance")) return "Performance";
-    if (fullName.includes("Architecture")) return "Architecture";
-    if (fullName.includes("Collaboration") || fullName.includes("Team"))
-      return "Team";
-    if (fullName.includes("Instruction") || fullName.includes("Support"))
-      return "Teaching";
-    if (fullName.includes("Grading") || fullName.includes("Feedback"))
-      return "Grading";
-    if (fullName.includes("Mentorship")) return "Mentorship";
-    if (fullName.includes("Motivation")) return "Motivation";
-    if (fullName.includes("Summary")) return "Summary";
-    if (fullName.includes("Understanding")) return "Overview";
-    if (fullName.includes("Additional")) return "Additional";
-    return fullName.split(" ")[0];
-  };
-
   return (
     <motion.div
       key={selectedIndex}
@@ -257,11 +210,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                               : "bg-blue-400"
                           }`}
                         ></span>
-                        <span className="truncate">
-                          {getCondensedSectionName(
-                            sectionsWithBulletPoints[index]
-                          )}
-                        </span>
+                        <span className="truncate">{section.title}</span>
                       </button>
                     );
                   })}
@@ -281,7 +230,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                       }`}
                     ></span>
                     <h4 className="font-semibold text-white text-sm">
-                      {sectionsWithBulletPoints[currentMobileSection]}
+                      {experience.details[currentMobileSection].title}
                     </h4>
                   </div>
                   <div className="space-y-2">
@@ -403,16 +352,14 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   }`}
                   onClick={() => onSectionSelect(index)}
                 >
-                  <div className="text-sm font-medium">
-                    {sectionsWithBulletPoints[index]}
-                  </div>
+                  <div className="text-sm font-medium">{section.title}</div>
                 </button>
               ))}
             </div>
             <div className="flex-grow">
               <div className="bg-gray-800 rounded-lg p-4">
                 <h4 className="font-semibold mb-2 text-white">
-                  {sectionsWithBulletPoints[selectedSectionIndex]}
+                  {experience.details[selectedSectionIndex].title}
                 </h4>
                 <div className="text-sm text-gray-300">
                   {experience.details[selectedSectionIndex].points.map(
