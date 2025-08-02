@@ -36,7 +36,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     onSectionSelect(prev);
   };
 
-  const getSectionColor = (index: number) => {
+  const getSectionColor = () => {
     if (selectedIndex === 0) return "orange";
     if (selectedIndex === 1) return "cyan";
     if (selectedIndex === 2) return "blue";
@@ -227,7 +227,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                 </p>
                 <div className="space-y-1 max-h-96 overflow-y-auto scrollbar-hide">
                   {experience.details.map((section, index) => {
-                    const color = getSectionColor(selectedIndex);
+                    const color = getSectionColor();
                     const isActive = index === currentMobileSection;
                     return (
                       <button
@@ -273,9 +273,9 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   <div className="flex items-center mb-3">
                     <span
                       className={`w-3 h-3 rounded-full mr-3 ${
-                        getSectionColor(selectedIndex) === "orange"
+                        getSectionColor() === "orange"
                           ? "bg-orange-500"
-                          : getSectionColor(selectedIndex) === "cyan"
+                          : getSectionColor() === "cyan"
                           ? "bg-cyan-500"
                           : "bg-blue-500"
                       }`}
@@ -290,9 +290,9 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                         <div key={index} className="flex items-start">
                           <span
                             className={`w-2 h-2 rounded-full mt-1.5 mr-2 flex-shrink-0 ${
-                              getSectionColor(selectedIndex) === "orange"
+                              getSectionColor() === "orange"
                                 ? "bg-orange-400"
-                                : getSectionColor(selectedIndex) === "cyan"
+                                : getSectionColor() === "cyan"
                                 ? "bg-cyan-400"
                                 : "bg-blue-400"
                             }`}
@@ -336,9 +336,9 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                         }}
                         className={`w-2 h-2 rounded-full transition-all duration-300 ${
                           index === currentMobileSection
-                            ? getSectionColor(selectedIndex) === "orange"
+                            ? getSectionColor() === "orange"
                               ? "bg-orange-500 scale-125"
-                              : getSectionColor(selectedIndex) === "cyan"
+                              : getSectionColor() === "cyan"
                               ? "bg-cyan-500 scale-125"
                               : "bg-blue-500 scale-125"
                             : "bg-gray-600 hover:bg-gray-500"

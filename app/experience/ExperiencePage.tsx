@@ -15,7 +15,6 @@ const ExperiencePage = () => {
 
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
-  const [modalImageSrc, setModalImageSrc] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedSectionIndex(0);
@@ -40,14 +39,8 @@ const ExperiencePage = () => {
     setCurrentAwsServices([]);
   };
 
-  const handleImageClick = (src: string) => {
-    setModalImageSrc(src);
-    setShowImageModal(true);
-  };
-
   const closeImageModal = () => {
     setShowImageModal(false);
-    setModalImageSrc(null);
   };
 
   return (
@@ -106,7 +99,7 @@ const ExperiencePage = () => {
 
       <ImageModal
         show={showImageModal}
-        imageSrc={modalImageSrc}
+        imageSrc={null} // No longer needed
         onClose={closeImageModal}
       />
     </section>
