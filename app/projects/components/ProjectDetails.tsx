@@ -18,317 +18,569 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
   onCameraImageChange,
   onUiImageChange,
 }) => {
-  if (
-    project.title === "AI Business Card Analyzer" ||
-    project.title === "AI Video Agent"
-  ) {
-    return (
-      <div className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-[#3B82F6]/20 transition-all duration-500">
-        {/* Project Title */}
-        <h2 className="text-5xl font-bold mb-6 gradient-text">
-          {project.title}
-        </h2>
-
-        {/* Project Gallery */}
-        <div className="mb-8">
-          <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-            <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
-              📸
-            </span>
-            App Screenshots
-          </h4>
-
-          <div className="relative">
-            <div className="relative h-[500px] w-full rounded-xl overflow-hidden shadow-2xl">
-              <Image
-                src={project.images[uiImageIndex]}
-                alt={`${project.title} ${uiImageIndex + 1}`}
-                fill
-                className="object-cover bg-gray-900"
-              />
-            </div>
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={() =>
-                onUiImageChange(
-                  uiImageIndex === 0
-                    ? project.images.length - 1
-                    : uiImageIndex - 1
-                )
-              }
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 glass-effect text-white rounded-full p-3 transition-all duration-300 hover:scale-110 hover-glow"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 19l-7-7 7-7"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={() =>
-                onUiImageChange(
-                  uiImageIndex === project.images.length - 1
-                    ? 0
-                    : uiImageIndex + 1
-                )
-              }
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 glass-effect text-white rounded-full p-3 transition-all duration-300 hover:scale-110 hover-glow"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </button>
-
-            {/* Pagination Dots */}
-            <div className="flex justify-center mt-4 space-x-2">
-              {project.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => onUiImageChange(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 cursor-pointer hover:scale-125 ${
-                    uiImageIndex === index
-                      ? "bg-gradient-to-r from-[#3B82F6] to-[#06B6D4]"
-                      : "bg-gray-500 hover:bg-gray-400"
-                  }`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Technologies */}
-        <div className="mb-8">
-          <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-            <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
-              🛠️
-            </span>
-            Technologies Used
-          </h4>
-          <div className="flex flex-wrap gap-3">
-            {project.technologies.map((tech, i) => (
-              <span
-                key={i}
-                className="px-4 py-2 glass-effect text-[#3B82F6] text-sm font-medium rounded-full hover:bg-[#3B82F6]/20 transition-all duration-300 hover-glow"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Project Description */}
-        <div className="mb-8">
-          <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-            <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
-              📝
-            </span>
-            Project Overview
-          </h4>
-          <div className="prose prose-invert max-w-none">
-            {project.description.split("\n\n").map((paragraph, index) => (
-              <p key={index} className="text-gray-300 leading-relaxed mb-4">
-                {paragraph}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Action Buttons */}
-        <div className="flex gap-4">
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#3B82F6]/25 transition-all duration-300 hover-glow"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              View on GitHub
-            </a>
-          )}
-          {project.github && project.github !== project.link && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-8 py-4 glass-effect text-white font-semibold rounded-xl hover:bg-[#3B82F6]/20 transition-all duration-300 hover-glow"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              GitHub
-            </a>
-          )}
-        </div>
-      </div>
-    );
-  }
-
+  // Enhanced layout for all projects
   return (
     <div className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-[#3B82F6]/20 transition-all duration-500">
-      <div className="flex flex-col lg:flex-row gap-8">
-        <div className="lg:w-3/5">
-          {/* Project Title */}
-          <h2 className="text-5xl font-bold mb-6 gradient-text">
-            {project.title}
-          </h2>
+      {/* Enhanced Header Section */}
+      <div className="mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
+          <div>
+            <h2 className="text-6xl font-bold mb-3 gradient-text">
+              {project.title}
+            </h2>
+            <p className="text-xl text-gray-300 mb-4">
+              {project.title === "Cap@UVA"
+                ? "Real-time occupancy tracking for UVA campus spaces"
+                : project.title === "AI Business Card Analyzer"
+                ? "Intelligent business card data extraction and analysis"
+                : "Advanced video processing and analysis platform"}
+            </p>
+          </div>
+          <div className="flex flex-col items-start md:items-end space-y-3">
+            {project.title === "Cap@UVA" && (
+              <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white text-sm font-semibold rounded-full">
+                <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
+                Live at UVA
+              </span>
+            )}
+            {project.title === "AI Business Card Analyzer" && (
+              <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white text-sm font-semibold rounded-full">
+                <span className="w-2 h-2 bg-white rounded-full mr-2"></span>
+                AI-Powered
+              </span>
+            )}
+            {project.title === "AI Video Agent" && (
+              <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white text-sm font-semibold rounded-full">
+                <span className="w-2 h-2 bg-white rounded-full mr-2"></span>
+                Video AI
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
 
-          {/* Technologies */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-              <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
+      <div
+        className={`grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 ${
+          project.title === "AI Business Card Analyzer" ||
+          project.title === "AI Video Agent"
+            ? "xl:grid-cols-6"
+            : ""
+        }`}
+      >
+        {/* Main Content - Left Column */}
+        <div
+          className={`space-y-8 lg:space-y-10 ${
+            project.title === "AI Business Card Analyzer" ||
+            project.title === "AI Video Agent"
+              ? "xl:col-span-3"
+              : "xl:col-span-2"
+          }`}
+        >
+          {/* Enhanced Technologies Section */}
+          <div className="glass-effect rounded-xl p-6 lg:p-8">
+            <h4 className="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
+              <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 🛠️
               </span>
-              Technologies Used
+              Technology Stack
             </h4>
-            <div className="flex flex-wrap gap-3">
-              {project.technologies.map((tech, i) => (
-                <span
-                  key={i}
-                  className="px-4 py-2 glass-effect text-[#3B82F6] text-sm font-medium rounded-full hover:bg-[#3B82F6]/20 transition-all duration-300 hover-glow"
-                >
-                  {tech}
-                </span>
-              ))}
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+              <div>
+                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                  Frontend & Mobile
+                </h5>
+                <div className="space-y-2 lg:space-y-3">
+                  <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                    <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                      RN
+                    </span>
+                    <span className="text-white font-medium lg:text-lg">
+                      React Native
+                    </span>
+                  </div>
+                  <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                    <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                      R
+                    </span>
+                    <span className="text-white font-medium lg:text-lg">
+                      React
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                  Backend & Cloud
+                </h5>
+                <div className="space-y-2 lg:space-y-3">
+                  {project.title === "Cap@UVA" ? (
+                    <div className="group relative">
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          AWS
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          AWS Services
+                        </span>
+                        <svg
+                          className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* AWS Services Dropdown */}
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                        <div className="grid grid-cols-1 gap-2 text-sm">
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                            Lambda Functions (Python & Node.js)
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                            SQS
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                            SNS
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            S3
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                            DynamoDB
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                            API Gateway
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-pink-500 rounded-full mr-3"></span>
+                            CloudWatch
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : project.title === "AI Business Card Analyzer" ? (
+                    <>
+                      <div className="group relative">
+                        <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                          <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                            AWS
+                          </span>
+                          <span className="text-white font-medium lg:text-lg">
+                            AWS Services
+                          </span>
+                          <svg
+                            className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </div>
+
+                        {/* AWS Services Dropdown for Business Card Analyzer */}
+                        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                          <div className="grid grid-cols-1 gap-2 text-sm">
+                            <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                              <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                              Lambda (Python)
+                            </div>
+                            <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                              <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                              S3
+                            </div>
+                            <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                              <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                              API Gateway
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="group relative">
+                        <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                          <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                            GC
+                          </span>
+                          <span className="text-white font-medium lg:text-lg">
+                            Google Cloud
+                          </span>
+                          <svg
+                            className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </div>
+
+                        {/* Google Cloud Services Dropdown for Business Card Analyzer */}
+                        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                          <div className="grid grid-cols-1 gap-2 text-sm">
+                            <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                              <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                              Cloud Storage
+                            </div>
+                            <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                              <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                              Firebase Auth
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="group relative">
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          AWS
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          AWS Services
+                        </span>
+                        <svg
+                          className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+
+                      {/* AWS Services Dropdown for Video Agent */}
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                        <div className="grid grid-cols-1 gap-2 text-sm">
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-red-500 rounded-full mr-3"></span>
+                            S3
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                            Lambda
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
+                            API Gateway
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
+                            Step Functions
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-yellow-500 rounded-full mr-3"></span>
+                            DynamoDB
+                          </div>
+                          <div className="flex items-center text-gray-300 hover:text-white transition-colors">
+                            <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                            OpenSearch
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                  AI & Computer Vision
+                </h5>
+                <div className="space-y-2 lg:space-y-3">
+                  {project.title === "Cap@UVA" ? (
+                    <>
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-red-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          YOLO
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          YOLO
+                        </span>
+                      </div>
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          DS
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          DeepSORT
+                        </span>
+                      </div>
+                    </>
+                  ) : project.title === "AI Business Card Analyzer" ? (
+                    <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                      <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                        AI
+                      </span>
+                      <span className="text-white font-medium lg:text-lg">
+                        OpenAI
+                      </span>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          LC
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          LangChain
+                        </span>
+                      </div>
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          AI
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          Claude AI
+                        </span>
+                      </div>
+                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                        <span className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                          CV
+                        </span>
+                        <span className="text-white font-medium lg:text-lg">
+                          Computer Vision
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {project.title === "Cap@UVA" && (
+                <div>
+                  <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                    Hardware & Edge
+                  </h5>
+                  <div className="space-y-2 lg:space-y-3">
+                    <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                      <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gray-600 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                        PI
+                      </span>
+                      <span className="text-white font-medium lg:text-lg">
+                        Raspberry Pi 5
+                      </span>
+                    </div>
+                    <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                      <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-400 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                        📷
+                      </span>
+                      <span className="text-white font-medium lg:text-lg">
+                        Camera Module
+                      </span>
+                    </div>
+                    <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors">
+                      <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-400 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
+                        ❄️
+                      </span>
+                      <span className="text-white font-medium lg:text-lg">
+                        Cooling Unit
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          {/* Project Description */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-              <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
+          {/* Enhanced Project Overview */}
+          <div className="glass-effect rounded-xl p-6 lg:p-8">
+            <h4 className="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
+              <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 📝
               </span>
               Project Overview
             </h4>
-            <div className="prose prose-invert max-w-none">
-              {project.description.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="text-gray-300 leading-relaxed mb-4">
-                  {paragraph}
-                </p>
-              ))}
+
+            <div className="space-y-6 lg:space-y-8">
+              <div className="flex items-start space-x-4 lg:space-x-6">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span className="text-white text-sm lg:text-base font-bold">
+                    !
+                  </span>
+                </div>
+                <div>
+                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                    The Problem
+                  </h5>
+                  <p className="text-gray-300 leading-relaxed lg:text-lg">
+                    {project.title === "Cap@UVA"
+                      ? "Students struggled to find open study spaces and gym areas at UVA during peak hours, with no way to check real-time capacity of buildings like Clemons Library or the AFC gym."
+                      : project.title === "AI Business Card Analyzer"
+                      ? "Manual business card data entry is time-consuming and error-prone, requiring users to manually type contact information from physical cards."
+                      : "Video analysis and processing requires significant manual effort and lacks intelligent automation for content understanding and processing."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4 lg:space-x-6">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span className="text-white text-sm lg:text-base font-bold">
+                    ✓
+                  </span>
+                </div>
+                <div>
+                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                    The Solution
+                  </h5>
+                  <p className="text-gray-300 leading-relaxed lg:text-lg">
+                    {project.title === "Cap@UVA"
+                      ? "Built an edge-compute system using Raspberry Pi 5 devices with connected cameras, running YOLO to detect individuals entering or exiting locations. Data is processed locally for privacy, then pushed to AWS via Node.js API."
+                      : project.title === "AI Business Card Analyzer"
+                      ? "Developed an AI-powered application that uses OCR and NLP to automatically extract and analyze business card information, providing instant contact data with high accuracy."
+                      : "Created an intelligent video processing platform that uses computer vision and machine learning to automatically analyze, process, and extract insights from video content."}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4 lg:space-x-6">
+                <div className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                  <span className="text-white text-sm lg:text-base font-bold">
+                    ⚡
+                  </span>
+                </div>
+                <div>
+                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                    Key Features
+                  </h5>
+                  <ul className="text-gray-300 leading-relaxed space-y-2 lg:space-y-3 lg:text-lg">
+                    {project.title === "Cap@UVA" ? (
+                      <>
+                        <li>
+                          • Real-time occupancy tracking with sub-second updates
+                        </li>
+                        <li>
+                          • Privacy-preserving edge processing with local YOLO
+                          inference
+                        </li>
+                        <li>
+                          • Subzone breakdown (basketball court, weight room,
+                          library floors)
+                        </li>
+                        <li>• Mobile and web interfaces for easy access</li>
+                        <li>
+                          • Scalable architecture for campus-wide deployment
+                        </li>
+                      </>
+                    ) : project.title === "AI Business Card Analyzer" ? (
+                      <>
+                        <li>
+                          • Instant OCR text extraction from business card
+                          images
+                        </li>
+                        <li>
+                          • Intelligent contact information parsing and
+                          validation
+                        </li>
+                        <li>• Automatic contact saving and organization</li>
+                        <li>
+                          • High accuracy data extraction with error correction
+                        </li>
+                        <li>• User-friendly mobile and web interfaces</li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          • Automated video content analysis and processing
+                        </li>
+                        <li>• Intelligent object detection and tracking</li>
+                        <li>
+                          • Advanced machine learning algorithms for insights
+                        </li>
+                        <li>• Real-time video processing capabilities</li>
+                        <li>• Scalable cloud-based architecture</li>
+                      </>
+                    )}
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 lg:gap-6">
             {project.link && (
               <a
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#3B82F6]/25 transition-all duration-300 hover-glow"
-              >
-                {project.title === "Cap@UVA" ? (
-                  <>
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                      />
-                    </svg>
-                    Visit Website
-                  </>
-                ) : (
-                  <>
-                    <svg
-                      className="w-5 h-5 mr-2"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    View on GitHub
-                  </>
-                )}
-              </a>
-            )}
-            {project.github && project.github !== project.link && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-8 py-4 glass-effect text-white font-semibold rounded-xl hover:bg-[#3B82F6]/20 transition-all duration-300 hover-glow"
+                className="inline-flex items-center justify-center px-8 py-4 lg:px-10 lg:py-5 bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#3B82F6]/25 transition-all duration-300 hover-glow lg:text-lg"
               >
                 <svg
-                  className="w-5 h-5 mr-2"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
+                  className="w-5 h-5 lg:w-6 lg:h-6 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
                   <path
-                    fillRule="evenodd"
-                    d="M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z"
-                    clipRule="evenodd"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                   />
                 </svg>
-                GitHub
+                {project.title === "Cap@UVA"
+                  ? "Visit Live Website"
+                  : "View Project"}
               </a>
             )}
           </div>
         </div>
 
-        <div className="lg:w-2/5">
-          <h4 className="text-xl font-semibold mb-4 text-white flex items-center">
-            <span className="w-6 h-6 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
-              📸
-            </span>
-            Project Gallery
-          </h4>
-          <ProjectGallery
-            project={project}
-            cameraImageIndex={cameraImageIndex}
-            uiImageIndex={uiImageIndex}
-            onCameraImageChange={onCameraImageChange}
-            onUiImageChange={onUiImageChange}
-          />
+        {/* Enhanced Gallery - Right Column */}
+        <div
+          className={`${
+            project.title === "AI Business Card Analyzer" ||
+            project.title === "AI Video Agent"
+              ? "xl:col-span-3"
+              : "xl:col-span-1"
+          }`}
+        >
+          <div className="glass-effect rounded-xl p-6 lg:p-8">
+            <h4 className="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
+              <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
+                📸
+              </span>
+              Project Gallery
+            </h4>
+            <ProjectGallery
+              project={project}
+              cameraImageIndex={cameraImageIndex}
+              uiImageIndex={uiImageIndex}
+              onCameraImageChange={onCameraImageChange}
+              onUiImageChange={onUiImageChange}
+            />
+          </div>
         </div>
       </div>
     </div>

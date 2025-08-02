@@ -132,40 +132,6 @@ const EducationPage = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Additional Information */}
-              <div className="mt-8 md:mt-12 p-4 md:p-6 bg-gradient-to-br from-[#3B82F6]/10 to-[#06B6D4]/10 rounded-xl border border-[#3B82F6]/20">
-                <h4 className="text-lg md:text-xl font-bold mb-3 md:mb-4 text-white flex items-center">
-                  <span className="w-6 h-6 md:w-8 md:h-8 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-2 md:mr-3 text-sm md:text-base">
-                    🎯
-                  </span>
-                  Academic Focus
-                </h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div>
-                    <h5 className="text-base md:text-lg font-semibold text-[#3B82F6] mb-2">
-                      Computer Science Focus
-                    </h5>
-                    <ul className="text-sm md:text-base text-gray-300 space-y-1">
-                      <li>• Software Engineering & Development</li>
-                      <li>• Artificial Intelligence & Machine Learning</li>
-                      <li>• Data Structures & Algorithms</li>
-                      <li>• Systems Programming</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h5 className="text-base md:text-lg font-semibold text-[#06B6D4] mb-2">
-                      Statistics Focus
-                    </h5>
-                    <ul className="text-sm md:text-base text-gray-300 space-y-1">
-                      <li>• Statistical Machine Learning</li>
-                      <li>• Data Analysis & Visualization</li>
-                      <li>• Probability & Linear Algebra</li>
-                      <li>• Regression Analysis</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>

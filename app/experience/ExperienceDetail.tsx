@@ -43,6 +43,12 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     return "blue";
   };
 
+  const getShadowColor = () => {
+    if (selectedIndex === 0) return "shadow-orange-glow"; // UDig orange shadow
+    if (selectedIndex === 1) return "shadow-cyan-glow"; // Booz Allen cyan shadow
+    return "shadow-blue-glow"; // Default blue shadow
+  };
+
   const textMarginClass = () => {
     switch (selectedIndex) {
       case 1:
@@ -59,7 +65,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
   return (
     <motion.div
       key={selectedIndex}
-      className={`flex-grow md:w-2/3 glass-effect rounded-lg shadow-lg overflow-hidden p-6`}
+      className={`flex-grow md:w-2/3 glass-effect rounded-lg shadow-lg ${getShadowColor()} overflow-hidden p-6`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 20 }}
@@ -192,10 +198,10 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                         className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all duration-300 flex items-center space-x-2 ${
                           isActive
                             ? color === "orange"
-                              ? "bg-orange-600 text-white shadow-lg"
+                              ? "bg-orange-600 text-white shadow-lg shadow-orange-glow-strong"
                               : color === "cyan"
-                              ? "bg-cyan-600 text-white shadow-lg"
-                              : "bg-blue-600 text-white shadow-lg"
+                              ? "bg-cyan-600 text-white shadow-lg shadow-cyan-glow-strong"
+                              : "bg-blue-600 text-white shadow-lg shadow-blue-glow-strong"
                             : "bg-gray-700 text-gray-300 hover:bg-gray-600"
                         }`}
                       >
@@ -344,10 +350,10 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   className={`relative z-10 block w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 border ${
                     selectedSectionIndex === index
                       ? selectedIndex === 0
-                        ? "bg-orange-600 text-white border-orange-600"
+                        ? "bg-orange-600 text-white border-orange-600 shadow-lg shadow-orange-glow-strong"
                         : selectedIndex === 1
-                        ? "bg-cyan-600 text-white border-cyan-600"
-                        : "bg-blue-600 text-white border-blue-600"
+                        ? "bg-cyan-600 text-white border-cyan-600 shadow-lg shadow-cyan-glow-strong"
+                        : "bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-glow-strong"
                       : "bg-gray-700 hover:bg-gray-600 text-gray-300 border-gray-600"
                   }`}
                   onClick={() => onSectionSelect(index)}
@@ -365,7 +371,17 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   {experience.details[selectedSectionIndex].points.map(
                     (point, index) => (
                       <div key={index} className="mb-2">
-                        <span className="text-blue-400 mr-2">•</span>
+                        <span
+                          className={`mr-2 ${
+                            selectedIndex === 0
+                              ? "text-orange-400"
+                              : selectedIndex === 1
+                              ? "text-cyan-400"
+                              : "text-blue-400"
+                          }`}
+                        >
+                          •
+                        </span>
                         {point}
                       </div>
                     )

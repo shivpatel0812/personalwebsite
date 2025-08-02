@@ -46,6 +46,12 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
     return "bg-blue-500 hover:bg-blue-600";
   };
 
+  const getShadowColor = (index: number) => {
+    if (index === 0) return "shadow-orange-glow-strong"; // UDig orange shadow
+    if (index === 1) return "shadow-cyan-glow-strong"; // Booz Allen cyan shadow
+    return "shadow-blue-glow-strong"; // Default blue shadow
+  };
+
   return (
     <div className="flex-shrink-0 md:w-1/3 relative">
       <div className="block lg:hidden">
@@ -75,7 +81,11 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
         </div>
 
         <div className="relative max-w-lg mx-auto">
-          <div className="bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700">
+          <div
+            className={`bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700 ${getShadowColor(
+              currentMobileIndex
+            )}`}
+          >
             <h3
               className={`font-bold text-lg mb-1 ${getCompanyColor(
                 currentMobileIndex
@@ -96,7 +106,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               onClick={prevExperience}
               className={`${getButtonColor(
                 currentMobileIndex
-              )} text-white rounded-full p-3 shadow-lg transition-all duration-200`}
+              )} text-white rounded-full p-3 shadow-lg ${getShadowColor(
+                currentMobileIndex
+              )} transition-all duration-200`}
             >
               <svg
                 className="w-5 h-5"
@@ -117,7 +129,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               onClick={nextExperience}
               className={`${getButtonColor(
                 currentMobileIndex
-              )} text-white rounded-full p-3 shadow-lg transition-all duration-200`}
+              )} text-white rounded-full p-3 shadow-lg ${getShadowColor(
+                currentMobileIndex
+              )} transition-all duration-200`}
             >
               <svg
                 className="w-5 h-5"
@@ -175,7 +189,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               <motion.div
                 className={`w-5/12 px-4 py-2 cursor-pointer rounded-lg transition-colors duration-200 ${
                   selectedIndex === index
-                    ? "glass-effect shadow-lg hover-glow"
+                    ? `glass-effect shadow-lg hover-glow ${getShadowColor(
+                        index
+                      )}`
                     : "hover:bg-white/10"
                 }`}
                 onClick={() => onSelectExperience(index)}
@@ -198,8 +214,20 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               </motion.div>
               <div className="absolute left-1/2 transform -translate-x-1/2 translate-y-0 flex items-center justify-center">
                 <div
-                  className={`w-6 h-6 rounded-full bg-[#3B82F6] z-10 ring-4 ring-gray-800 transition-all duration-200 ${
-                    selectedIndex === index ? "ring-[#06B6D4] neon-glow" : ""
+                  className={`w-6 h-6 rounded-full z-10 ring-4 ring-gray-800 transition-all duration-200 ${
+                    index === 0
+                      ? "bg-orange-500"
+                      : index === 1
+                      ? "bg-cyan-500"
+                      : "bg-blue-500"
+                  } ${
+                    selectedIndex === index
+                      ? index === 0
+                        ? "ring-orange-400 neon-glow"
+                        : index === 1
+                        ? "ring-cyan-400 neon-glow"
+                        : "ring-blue-400 neon-glow"
+                      : ""
                   }`}
                 ></div>
               </div>

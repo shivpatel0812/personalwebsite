@@ -71,3 +71,28 @@ body {
     box-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
   }
 }
+
+/* Custom colored shadow classes */
+.shadow-orange-glow {
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+}
+
+.shadow-cyan-glow {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+}
+
+.shadow-blue-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.shadow-orange-glow-strong {
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.4);
+}
+
+.shadow-cyan-glow-strong {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.4);
+}
+
+.shadow-blue-glow-strong {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.4);
+}

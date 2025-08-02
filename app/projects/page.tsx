@@ -40,7 +40,7 @@ const ProjectsPage = () => {
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-48 md:h-64 bg-[#3B82F6]/15 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="mx-auto px-4 relative z-10 max-w-none">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-4xl md:text-6xl font-light mb-4 md:mb-6 gradient-text tracking-tight">
             Notable Projects
@@ -56,7 +56,15 @@ const ProjectsPage = () => {
             onProjectSelect={handleProjectSelect}
           />
         ) : (
-          <div className="max-w-7xl mx-auto">
+          <div
+            className={`mx-auto p-6 lg:p-8 ${
+              selectedProject &&
+              (selectedProject.title === "AI Business Card Analyzer" ||
+                selectedProject.title === "AI Video Agent")
+                ? "max-w-[2400px] xl:max-w-[3000px] 2xl:max-w-[3200px]"
+                : "max-w-[1600px] xl:max-w-[1800px] 2xl:max-w-[2000px]"
+            }`}
+          >
             <div className="mb-6 md:mb-8">
               <button
                 className="flex items-center text-[#3B82F6] hover:text-[#06B6D4] transition-colors group hover-glow text-sm md:text-base"
@@ -79,14 +87,16 @@ const ProjectsPage = () => {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
-              <ProjectSidebar
-                projects={projects}
-                selectedProjectIndex={selectedProjectIndex}
-                onProjectSelect={handleProjectSelect}
-              />
+            <div className="grid grid-cols-1 xl:grid-cols-6 gap-6 md:gap-8 lg:gap-12">
+              <div className="xl:col-span-1">
+                <ProjectSidebar
+                  projects={projects}
+                  selectedProjectIndex={selectedProjectIndex}
+                  onProjectSelect={handleProjectSelect}
+                />
+              </div>
 
-              <div className="lg:col-span-3">
+              <div className="xl:col-span-5">
                 {selectedProject && (
                   <ProjectDetails
                     project={selectedProject}

@@ -108,11 +108,11 @@ const TechStack = () => {
 
   return (
     <section className="py-12 md:py-20 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white min-h-screen relative overflow-hidden">
-      {/* Subtle background elements */}
+      {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-48 md:w-96 h-48 md:h-96 bg-gradient-to-br from-[#3B82F6]/20 to-[#06B6D4]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 md:w-80 h-40 md:h-80 bg-gradient-to-br from-[#06B6D4]/20 to-[#3B82F6]/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 md:w-72 h-36 md:h-72 bg-gradient-to-br from-[#3B82F6]/15 to-[#06B6D4]/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 bg-[#3B82F6]/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-[#06B6D4]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-48 md:h-64 bg-[#3B82F6]/15 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -212,12 +212,14 @@ const TechStack = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{
-                      opacity: index === currentIndex ? 1 : 0.7,
+                      opacity: index === currentIndex ? 1 : 0,
                       y: index === currentIndex ? 0 : 20,
                       scale: index === currentIndex ? 1 : 0.95,
                     }}
                     transition={{ duration: 0.5 }}
-                    className="text-center"
+                    className={`text-center ${
+                      index === currentIndex ? "block" : "hidden"
+                    }`}
                   >
                     {/* Category Header */}
                     <div className="mb-6 md:mb-12">
