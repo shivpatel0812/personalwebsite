@@ -56,15 +56,7 @@ const ProjectsPage = () => {
             onProjectSelect={handleProjectSelect}
           />
         ) : (
-          <div
-            className={`mx-auto p-6 lg:p-8 ${
-              selectedProject &&
-              (selectedProject.title === "AI Business Card Analyzer" ||
-                selectedProject.title === "AI Video Agent")
-                ? "max-w-[2400px] xl:max-w-[3000px] 2xl:max-w-[3200px]"
-                : "max-w-[1600px] xl:max-w-[1800px] 2xl:max-w-[2000px]"
-            }`}
-          >
+          <div className="mx-auto p-6 lg:p-8 max-w-[2000px] xl:max-w-[2400px] 2xl:max-w-[2600px]">
             <div className="mb-6 md:mb-8">
               <button
                 className="flex items-center text-[#3B82F6] hover:text-[#06B6D4] transition-colors group hover-glow text-sm md:text-base"

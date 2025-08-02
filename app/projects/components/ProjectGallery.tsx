@@ -436,7 +436,7 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 src={project.images[uiImageIndex]}
                 alt={`${project.title} Screenshot ${uiImageIndex + 1}`}
                 fill
-                className="object-contain bg-gray-900"
+                className="object-cover bg-gray-900"
               />
               {/* Click to enlarge overlay */}
               <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">

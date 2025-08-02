@@ -58,23 +58,9 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         </div>
       </div>
 
-      <div
-        className={`grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12 xl:gap-16 ${
-          project.title === "AI Business Card Analyzer" ||
-          project.title === "AI Video Agent"
-            ? "xl:grid-cols-6"
-            : ""
-        }`}
-      >
+      <div className="grid grid-cols-1 xl:grid-cols-6 gap-8 lg:gap-12 xl:gap-16">
         {/* Main Content - Left Column */}
-        <div
-          className={`space-y-8 lg:space-y-10 ${
-            project.title === "AI Business Card Analyzer" ||
-            project.title === "AI Video Agent"
-              ? "xl:col-span-3"
-              : "xl:col-span-2"
-          }`}
-        >
+        <div className="space-y-8 lg:space-y-10 xl:col-span-3">
           {/* Enhanced Technologies Section */}
           <div className="glass-effect rounded-xl p-6 lg:p-8">
             <h4 className="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
@@ -557,14 +543,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         </div>
 
         {/* Enhanced Gallery - Right Column */}
-        <div
-          className={`${
-            project.title === "AI Business Card Analyzer" ||
-            project.title === "AI Video Agent"
-              ? "xl:col-span-3"
-              : "xl:col-span-1"
-          }`}
-        >
+        <div className="xl:col-span-3">
           <div className="glass-effect rounded-xl p-6 lg:p-8">
             <h4 className="text-xl lg:text-2xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
