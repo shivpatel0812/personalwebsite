@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, PanInfo } from "framer-motion";
 
 interface TechCategory {
@@ -81,17 +81,17 @@ const TechStack = () => {
     }
   };
 
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     if (currentIndex < techCategories.length - 1) {
       setCurrentIndex(currentIndex + 1);
     }
-  };
+  }, [currentIndex]);
 
-  const prevSlide = () => {
+  const prevSlide = useCallback(() => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
     }
-  };
+  }, [currentIndex]);
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {

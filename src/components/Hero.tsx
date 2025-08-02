@@ -21,7 +21,7 @@ const Hero = () => {
         </div>
 
         <h1 className="text-5xl md:text-6xl font-bold mb-6">
-          Hi, I'm <span className="text-blue-400">Your Name</span>
+          Hi, I&apos;m <span className="text-blue-400">Your Name</span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-300 mb-8">
           Full Stack Developer | Software Engineer

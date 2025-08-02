@@ -28,7 +28,7 @@ const ExperiencePage = () => {
     ) {
       setSelectedExperienceIndex(0);
     }
-  }, [experiences, selectedExperienceIndex]);
+  }, [selectedExperienceIndex]);
 
   const handleAwsTagClick = (services: string[]) => {
     setCurrentAwsServices(services);

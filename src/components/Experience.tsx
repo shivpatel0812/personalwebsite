@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface ExperienceItem {
   title: string;
@@ -74,9 +75,11 @@ const Experience = () => {
             {experiences.map((exp, idx) => (
               <div key={idx} className="bg-gray-800 rounded-xl p-6 pt-0">
                 {exp.image && (
-                  <img
+                  <Image
                     src={exp.image}
                     alt={exp.company}
+                    width={800}
+                    height={400}
                     className="w-full h-auto mt-0 mb-4 rounded"
                   />
                 )}
