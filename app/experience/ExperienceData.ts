@@ -103,7 +103,7 @@ export const experiences: ExperienceItem[] = [
       "Python",
       "PostgreSQL",
       "pgvector",
-      "OpenAI CLIP",
+      "CLIP (OpenAI)",
       "Docker",
       "Azure AD",
       "Playwright",
