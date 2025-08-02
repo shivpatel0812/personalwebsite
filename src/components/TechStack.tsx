@@ -66,39 +66,30 @@ const techCategories: TechCategory[] = [
 
 const TechStack = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [dragDirection, setDragDirection] = useState<"left" | "right" | null>(
-    null
-  );
+
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const handleDragEnd = (event: any, info: PanInfo) => {
+  const handleDragEnd = (event: unknown, info: PanInfo) => {
     const threshold = 50;
     if (info.offset.x > threshold && currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      setDragDirection("right");
     } else if (
       info.offset.x < -threshold &&
       currentIndex < techCategories.length - 1
     ) {
       setCurrentIndex(currentIndex + 1);
-      setDragDirection("left");
     }
-    setTimeout(() => setDragDirection(null), 300);
   };
 
   const nextSlide = () => {
     if (currentIndex < techCategories.length - 1) {
       setCurrentIndex(currentIndex + 1);
-      setDragDirection("left");
-      setTimeout(() => setDragDirection(null), 300);
     }
   };
 
   const prevSlide = () => {
     if (currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
-      setDragDirection("right");
-      setTimeout(() => setDragDirection(null), 300);
     }
   };
 
@@ -113,7 +104,7 @@ const TechStack = () => {
 
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [currentIndex]);
+  }, [currentIndex, nextSlide, prevSlide]);
 
   return (
     <section className="py-20 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white min-h-screen relative overflow-hidden">

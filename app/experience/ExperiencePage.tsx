@@ -12,16 +12,13 @@ const ExperiencePage = () => {
   >(0);
   const [showAwsModal, setShowAwsModal] = useState(false);
   const [currentAwsServices, setCurrentAwsServices] = useState<string[]>([]);
-  const [boozAllenActiveTab, setBoozAllenActiveTab] = useState(0);
+
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
   const [modalImageSrc, setModalImageSrc] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedSectionIndex(0);
-    if (selectedExperienceIndex !== 1) {
-      setBoozAllenActiveTab(0);
-    }
   }, [selectedExperienceIndex]);
 
   useEffect(() => {

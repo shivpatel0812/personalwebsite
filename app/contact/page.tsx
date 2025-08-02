@@ -19,7 +19,7 @@ const ContactPage = () => {
             Get in Touch
           </h2>
           <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            Let's connect and discuss opportunities for collaboration
+            Let&apos;s connect and discuss opportunities for collaboration
           </p>
         </div>
         <div className="max-w-4xl mx-auto">
