@@ -30,13 +30,26 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
     onSelectExperience(prev);
   };
 
+  const getCompanyColor = (index: number) => {
+    if (index === 0) return "text-orange-500"; // UDig
+    if (index === 1) return "text-cyan-400"; // Booz Allen
+    if (index === 2) return "text-blue-400"; // Research
+    if (index === 3) return "text-blue-400"; // Teacher
+    return "text-blue-400";
+  };
+
+  const getButtonColor = (index: number) => {
+    if (index === 0) return "bg-orange-500 hover:bg-orange-600"; // UDig
+    if (index === 1) return "bg-cyan-500 hover:bg-cyan-600"; // Booz Allen
+    if (index === 2) return "bg-blue-500 hover:bg-blue-600"; // Research
+    if (index === 3) return "bg-blue-500 hover:bg-blue-600"; // Teacher
+    return "bg-blue-500 hover:bg-blue-600";
+  };
+
   return (
     <div className="flex-shrink-0 md:w-1/3 relative">
       <div className="block lg:hidden">
         <div className="text-center mb-6">
-          <p className="text-sm text-gray-400 mb-4">
-            Swipe or use arrows to navigate
-          </p>
           <div className="flex justify-center space-x-2">
             {experiences.map((exp, index) => (
               <button
@@ -47,9 +60,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                 }}
                 className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                   index === currentMobileIndex
-                    ? "bg-blue-500 text-white"
+                    ? getButtonColor(index)
                     : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                }`}
+                } ${index === currentMobileIndex ? "text-white" : ""}`}
               >
                 {exp.company === "UVA School of Data Science"
                   ? "Research"
@@ -64,35 +77,26 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
         <div className="relative max-w-lg mx-auto">
           <div className="bg-gray-800 rounded-xl p-6 shadow-xl border border-gray-700">
             <h3
-              className={`font-bold text-lg mb-1 ${
-                currentMobileIndex === 0
-                  ? "text-orange-500"
-                  : currentMobileIndex === 1
-                  ? "text-cyan-400"
-                  : currentMobileIndex === 2
-                  ? "text-blue-400"
-                  : currentMobileIndex === 3
-                  ? "text-orange-500"
-                  : ""
-              }`}
+              className={`font-bold text-lg mb-1 ${getCompanyColor(
+                currentMobileIndex
+              )}`}
             >
               {experiences[currentMobileIndex].company}
             </h3>
             <p className="text-sm text-gray-300 mb-1">
               {experiences[currentMobileIndex].title}
             </p>
-            <p className="text-xs text-gray-400 mb-4">
+            <p className="text-xs text-gray-400">
               {experiences[currentMobileIndex].period}
             </p>
-            <div className="text-sm text-gray-300">
-              {experiences[currentMobileIndex].description}
-            </div>
           </div>
 
           <div className="flex justify-center mt-4 space-x-4">
             <button
               onClick={prevExperience}
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3 shadow-lg transition-all duration-200"
+              className={`${getButtonColor(
+                currentMobileIndex
+              )} text-white rounded-full p-3 shadow-lg transition-all duration-200`}
             >
               <svg
                 className="w-5 h-5"
@@ -111,7 +115,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
 
             <button
               onClick={nextExperience}
-              className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3 shadow-lg transition-all duration-200"
+              className={`${getButtonColor(
+                currentMobileIndex
+              )} text-white rounded-full p-3 shadow-lg transition-all duration-200`}
             >
               <svg
                 className="w-5 h-5"
@@ -140,7 +146,11 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
               }}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentMobileIndex
-                  ? "bg-blue-500 scale-125"
+                  ? index === 0
+                    ? "bg-orange-500 scale-125"
+                    : index === 1
+                    ? "bg-cyan-500 scale-125"
+                    : "bg-blue-500 scale-125"
                   : "bg-gray-600 hover:bg-gray-500"
               }`}
             />
@@ -175,17 +185,9 @@ const ExperienceTimeline: React.FC<ExperienceTimelineProps> = ({
                 transition={{ duration: 0.6 }}
               >
                 <h3
-                  className={`font-bold text-lg md:text-xl mb-1 ${
-                    index === 0
-                      ? "text-orange-500"
-                      : index === 1
-                      ? "text-cyan-400"
-                      : index === 2
-                      ? "text-blue-400"
-                      : index === 3
-                      ? "text-orange-500"
-                      : ""
-                  }`}
+                  className={`font-bold text-lg md:text-xl mb-1 ${getCompanyColor(
+                    index
+                  )}`}
                 >
                   {exp.company}
                 </h3>

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExperienceItem } from "./ExperienceData";
@@ -22,6 +22,29 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
   onAwsClick,
   onImageClick,
 }) => {
+  const [currentMobileSection, setCurrentMobileSection] = useState(0);
+
+  const nextSection = () => {
+    const next = (currentMobileSection + 1) % experience.details.length;
+    setCurrentMobileSection(next);
+    onSectionSelect(next);
+  };
+
+  const prevSection = () => {
+    const prev =
+      (currentMobileSection - 1 + experience.details.length) %
+      experience.details.length;
+    setCurrentMobileSection(prev);
+    onSectionSelect(prev);
+  };
+
+  const getSectionColor = (index: number) => {
+    if (selectedIndex === 0) return "orange";
+    if (selectedIndex === 1) return "cyan";
+    if (selectedIndex === 2) return "blue";
+    return "blue";
+  };
+
   const textMarginClass = (index: number) => {
     switch (index) {
       case 1:
@@ -57,6 +80,30 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     "📝 Grading & Feedback",
     "💬 Mentorship & Environment",
   ];
+
+  const getCondensedSectionName = (fullName: string) => {
+    if (fullName.includes("Frontend")) return "Frontend";
+    if (fullName.includes("Backend")) return "Backend";
+    if (fullName.includes("Database")) return "Database";
+    if (fullName.includes("AI/ML") || fullName.includes("Machine Learning"))
+      return "AI/ML";
+    if (fullName.includes("DevOps")) return "DevOps";
+    if (fullName.includes("Security")) return "Security";
+    if (fullName.includes("Performance")) return "Performance";
+    if (fullName.includes("Architecture")) return "Architecture";
+    if (fullName.includes("Collaboration") || fullName.includes("Team"))
+      return "Team";
+    if (fullName.includes("Instruction") || fullName.includes("Support"))
+      return "Teaching";
+    if (fullName.includes("Grading") || fullName.includes("Feedback"))
+      return "Grading";
+    if (fullName.includes("Mentorship")) return "Mentorship";
+    if (fullName.includes("Motivation")) return "Motivation";
+    if (fullName.includes("Summary")) return "Summary";
+    if (fullName.includes("Understanding")) return "Overview";
+    if (fullName.includes("Additional")) return "Additional";
+    return fullName.split(" ")[0];
+  };
 
   return (
     <motion.div
@@ -173,7 +220,165 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
           <h3 className="text-xl font-bold underline mb-4">
             Responsibilities:
           </h3>
-          <div className="flex flex-row gap-8">
+
+          <div className="block lg:hidden">
+            <div className="flex gap-4">
+              <div className="w-1/3 space-y-2">
+                <p className="text-sm text-gray-400 mb-3 font-semibold">
+                  Sections:
+                </p>
+                <div className="space-y-1 max-h-96 overflow-y-auto scrollbar-hide">
+                  {experience.details.map((section, index) => {
+                    const color = getSectionColor(selectedIndex);
+                    const isActive = index === currentMobileSection;
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setCurrentMobileSection(index);
+                          onSectionSelect(index);
+                        }}
+                        className={`w-full text-left px-3 py-2 rounded-lg text-xs font-medium transition-all duration-300 flex items-center space-x-2 ${
+                          isActive
+                            ? color === "orange"
+                              ? "bg-orange-600 text-white shadow-lg"
+                              : color === "cyan"
+                              ? "bg-cyan-600 text-white shadow-lg"
+                              : "bg-blue-600 text-white shadow-lg"
+                            : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+                        }`}
+                      >
+                        <span
+                          className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                            isActive
+                              ? "bg-white"
+                              : color === "orange"
+                              ? "bg-orange-400"
+                              : color === "cyan"
+                              ? "bg-cyan-400"
+                              : "bg-blue-400"
+                          }`}
+                        ></span>
+                        <span className="truncate">
+                          {getCondensedSectionName(
+                            sectionsWithBulletPoints[index]
+                          )}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="w-2/3">
+                <div className="bg-gray-800 rounded-xl p-4 border border-gray-700">
+                  <div className="flex items-center mb-3">
+                    <span
+                      className={`w-3 h-3 rounded-full mr-3 ${
+                        getSectionColor(selectedIndex) === "orange"
+                          ? "bg-orange-500"
+                          : getSectionColor(selectedIndex) === "cyan"
+                          ? "bg-cyan-500"
+                          : "bg-blue-500"
+                      }`}
+                    ></span>
+                    <h4 className="font-semibold text-white text-sm">
+                      {sectionsWithBulletPoints[currentMobileSection]}
+                    </h4>
+                  </div>
+                  <div className="space-y-2">
+                    {experience.details[currentMobileSection].points.map(
+                      (point, index) => (
+                        <div key={index} className="flex items-start">
+                          <span
+                            className={`w-2 h-2 rounded-full mt-1.5 mr-2 flex-shrink-0 ${
+                              getSectionColor(selectedIndex) === "orange"
+                                ? "bg-orange-400"
+                                : getSectionColor(selectedIndex) === "cyan"
+                                ? "bg-cyan-400"
+                                : "bg-blue-400"
+                            }`}
+                          ></span>
+                          <p className="text-xs text-gray-300 leading-relaxed">
+                            {point}
+                          </p>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                <div className="flex justify-center space-x-4 mt-4">
+                  <button
+                    onClick={prevSection}
+                    className="bg-gray-700 hover:bg-gray-600 text-white rounded-full p-2 shadow-lg transition-all duration-200"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+
+                  <div className="flex items-center space-x-1">
+                    {experience.details.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => {
+                          setCurrentMobileSection(index);
+                          onSectionSelect(index);
+                        }}
+                        className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                          index === currentMobileSection
+                            ? getSectionColor(selectedIndex) === "orange"
+                              ? "bg-orange-500 scale-125"
+                              : getSectionColor(selectedIndex) === "cyan"
+                              ? "bg-cyan-500 scale-125"
+                              : "bg-blue-500 scale-125"
+                            : "bg-gray-600 hover:bg-gray-500"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={nextSection}
+                    className="bg-gray-700 hover:bg-gray-600 text-white rounded-full p-2 shadow-lg transition-all duration-200"
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="text-center mt-2">
+                  <span className="text-xs text-gray-400">
+                    {currentMobileSection + 1} of {experience.details.length}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="hidden lg:flex flex-row gap-8">
             <div className="flex-shrink-0 w-1/3 space-y-4 relative">
               <div
                 className={`absolute left-3 top-0 bottom-0 w-0.5 ${
@@ -200,99 +405,30 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   }`}
                   onClick={() => onSectionSelect(index)}
                 >
-                  {section.title}
-                  <div
-                    className={`absolute -left-4 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full ring-4 ring-gray-700 ${
-                      selectedIndex === 0
-                        ? "bg-orange-500"
-                        : selectedIndex === 1
-                        ? "bg-cyan-400"
-                        : "bg-blue-500"
-                    }`}
-                  ></div>
+                  <div className="text-sm font-medium">
+                    {sectionsWithBulletPoints[index]}
+                  </div>
                 </button>
               ))}
             </div>
-
-            <div className="flex-grow w-2/3 space-y-4">
-              <div className="border border-white/10 p-4 rounded-lg glass-effect">
-                {experience.details[selectedSectionIndex].points.map(
-                  (point, pointIndex) => {
-                    const sectionTitle =
-                      experience.details[selectedSectionIndex].title;
-
-                    if (sectionsWithBulletPoints.includes(sectionTitle)) {
-                      return (
-                        <ul
-                          key={pointIndex}
-                          className="list-none space-y-1 pl-0"
-                        >
-                          <li className="flex items-start">
-                            <span
-                              className={`font-bold mr-2 ${
-                                selectedIndex === 0
-                                  ? "text-orange-500"
-                                  : selectedIndex === 1
-                                  ? "text-cyan-400"
-                                  : "text-blue-500"
-                              }`}
-                            >
-                              •
-                            </span>
-                            <span className="font-normal text-gray-300">
-                              {point}
-                            </span>
-                          </li>
-                        </ul>
-                      );
-                    } else {
-                      return (
-                        <p
-                          key={pointIndex}
-                          className="font-normal text-gray-300"
-                        >
-                          {point}
-                        </p>
-                      );
-                    }
-                  }
-                )}
-                {selectedIndex === 2 && selectedSectionIndex === 1 && (
-                  <div className="relative w-full h-64 mt-4 rounded-lg overflow-hidden">
-                    <Image
-                      src="/Neuronsegfrontend.png"
-                      alt="Neuronseg Frontend Screenshot"
-                      fill
-                      className="object-contain cursor-pointer"
-                      onClick={() => onImageClick("/Neuronsegfrontend.png")}
-                    />
-                  </div>
-                )}
+            <div className="flex-grow">
+              <div className="bg-gray-800 rounded-lg p-4">
+                <h4 className="font-semibold mb-2 text-white">
+                  {sectionsWithBulletPoints[selectedSectionIndex]}
+                </h4>
+                <div className="text-sm text-gray-300">
+                  {experience.details[selectedSectionIndex].points.map(
+                    (point, index) => (
+                      <div key={index} className="mb-2">
+                        <span className="text-blue-400 mr-2">•</span>
+                        {point}
+                      </div>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex gap-4 mt-4">
-          {experience.link && (
-            <a
-              href={experience.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:underline text-sm"
-            >
-              Learn More →
-            </a>
-          )}
-          {experience.github && (
-            <a
-              href={experience.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:underline text-sm"
-            >
-              GitHub →
-            </a>
-          )}
         </div>
       </div>
     </motion.div>

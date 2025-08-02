@@ -67,7 +67,7 @@ const ExperiencePage = () => {
           <h2 className="text-6xl font-light mb-6 gradient-text tracking-tight">
             Experience
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
+          <p className="hidden md:block text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed">
             Professional journey and hands-on experience in software engineering
             and research
           </p>
