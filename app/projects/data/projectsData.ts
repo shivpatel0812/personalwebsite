@@ -4,7 +4,7 @@ export const projects: Project[] = [
   {
     title: "Cap@UVA",
     description:
-      "My friend and I often struggled to find open spaces to study or work out at UVA, especially during peak hours, since there was no way to check the real-time capacity of buildings like Clemons Library or the AFC gym.\n\n" +
+      "My friends and I often struggled to find open spaces to study or work out at UVA, especially during peak hours, since there was no way to check the real-time capacity of buildings like Clemons Library or the AFC gym.\n\n" +
       "Frustrated by this recurring problem, we decided to develop Cap@UVA, a live occupancy tracker designed specifically for high-traffic university spaces.\n\n" +
       "We built an edge-compute system using Raspberry Pi 5 devices with connected cameras, running YOLOv8 to detect individuals entering or exiting a location.\n\n" +
       "The data is processed locally to preserve privacy, then pushed to AWS via a Node.js API, where a Lambda function cleans and calculates current capacity.\n\n" +
