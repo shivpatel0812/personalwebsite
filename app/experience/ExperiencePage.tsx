@@ -87,7 +87,6 @@ const ExperiencePage = () => {
               selectedSectionIndex={selectedSectionIndex}
               onSectionSelect={setSelectedSectionIndex}
               onAwsClick={handleAwsTagClick}
-              onImageClick={handleImageClick}
             />
           ) : (
             <div className="flex-grow md:w-2/3 glass-effect rounded-lg shadow-lg p-6">

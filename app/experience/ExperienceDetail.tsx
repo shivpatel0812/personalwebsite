@@ -11,7 +11,6 @@ interface ExperienceDetailProps {
   selectedSectionIndex: number;
   onSectionSelect: (index: number) => void;
   onAwsClick: (services: string[]) => void;
-  onImageClick: (src: string) => void;
 }
 
 const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
@@ -20,7 +19,6 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
   selectedSectionIndex,
   onSectionSelect,
   onAwsClick,
-  onImageClick,
 }) => {
   const [currentMobileSection, setCurrentMobileSection] = useState(0);
 
@@ -45,8 +43,8 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     return "blue";
   };
 
-  const textMarginClass = (index: number) => {
-    switch (index) {
+  const textMarginClass = () => {
+    switch (selectedIndex) {
       case 1:
         return "-mt-0";
       case 2:
@@ -141,7 +139,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
             />
           </div>
         )}
-        <div className={`${textMarginClass(selectedIndex)}`}>
+        <div className={`${textMarginClass()}`}>
           <div>
             <h3 className="text-2xl font-bold mb-2">{experience.title}</h3>
             {selectedIndex === 3 && (
