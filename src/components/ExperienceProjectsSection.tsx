@@ -123,27 +123,112 @@ const ExperienceProjectsSection = () => {
   const selectedItem = data[selected];
 
   return (
-    <section className="py-20 bg-gray-50 min-h-screen">
+    <section className="py-12 md:py-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4">
-        <div className="flex justify-center mb-8">
-          {TABS.map((t) => (
-            <button
-              key={t}
-              className={`px-6 py-2 mx-2 rounded-full font-semibold transition-colors border-2 ${
-                tab === t
-                  ? "bg-blue-500 text-white border-blue-500"
-                  : "bg-white text-blue-500 border-blue-500 hover:bg-blue-100"
-              }`}
-              onClick={() => {
-                setTab(t as "Experiences" | "Projects");
-                setSelected(0);
-              }}
-            >
-              {t}
-            </button>
-          ))}
+        {/* Tab Navigation */}
+        <div className="flex justify-center mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
+            {TABS.map((t) => (
+              <button
+                key={t}
+                className={`px-4 md:px-6 py-2 mx-0 sm:mx-2 rounded-full font-semibold transition-colors border-2 text-sm md:text-base ${
+                  tab === t
+                    ? "bg-blue-500 text-white border-blue-500"
+                    : "bg-white text-blue-500 border-blue-500 hover:bg-blue-100"
+                }`}
+                onClick={() => {
+                  setTab(t as "Experiences" | "Projects");
+                  setSelected(0);
+                }}
+              >
+                {t}
+              </button>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-8">
+
+        {/* Mobile Layout - Stacked */}
+        <div className="block md:hidden space-y-6">
+          {/* Mobile List View */}
+          <div className="space-y-3 max-h-64 overflow-y-auto">
+            {data.map((item, idx) => (
+              <div
+                key={idx}
+                className={`cursor-pointer bg-white rounded-lg shadow-md p-3 flex items-center gap-3 border-2 transition-all ${
+                  selected === idx
+                    ? "border-blue-500 ring-2 ring-blue-200"
+                    : "border-transparent hover:border-blue-300"
+                }`}
+                onClick={() => setSelected(idx)}
+              >
+                <div className="relative w-12 h-12 rounded-md overflow-hidden flex-shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <h3 className="font-semibold text-sm truncate">
+                    {item.title}
+                    {"company" in item && item.company && (
+                      <span className="ml-1 text-blue-500 text-xs block">
+                        @ {item.company}
+                      </span>
+                    )}
+                  </h3>
+                  <div className="text-gray-500 text-xs">{item.period}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Mobile Detailed View */}
+          <div className="bg-white rounded-lg shadow-lg p-4">
+            <div className="relative w-full h-40 mb-4 rounded-lg overflow-hidden">
+              <Image
+                src={selectedItem.image}
+                alt={selectedItem.title}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <h2 className="text-xl md:text-2xl font-bold mb-2">
+              {selectedItem.title}
+              {selectedItem.company && (
+                <span className="ml-2 text-lg font-semibold text-blue-600 block mt-1">
+                  @ {selectedItem.company}
+                </span>
+              )}
+            </h2>
+            <div className="text-gray-500 text-sm mb-2">
+              {selectedItem.location && <span>{selectedItem.location} | </span>}
+              {selectedItem.period}
+            </div>
+            <p className="text-sm md:text-base text-gray-700 mb-3">
+              {selectedItem.description}
+            </p>
+            <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+              {selectedItem.details.map((item: string, i: number) => (
+                <li key={i}>{item}</li>
+              ))}
+            </ul>
+            {selectedItem.link && (
+              <a
+                href={selectedItem.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-3 text-blue-600 hover:underline text-sm"
+              >
+                {tab === "Projects" ? "View Project" : "Learn More"}
+              </a>
+            )}
+          </div>
+        </div>
+
+        {/* Desktop Layout - Side by Side */}
+        <div className="hidden md:flex md:flex-row gap-8">
           {/* Detailed View */}
           <div className="md:w-2/3 bg-white rounded-lg shadow-lg p-8">
             <div className="relative w-full h-56 mb-6 rounded-lg overflow-hidden">
