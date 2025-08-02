@@ -56,7 +56,7 @@ const ProjectsPage = () => {
             onProjectSelect={handleProjectSelect}
           />
         ) : (
-          <div className="mx-auto p-6 lg:p-8 max-w-[1800px] xl:max-w-[2000px] 2xl:max-w-[2200px]">
+          <div className="w-full px-0">
             <div className="mb-6 md:mb-8">
               <button
                 className="flex items-center text-[#3B82F6] hover:text-[#06B6D4] transition-colors group hover-glow text-sm md:text-base"

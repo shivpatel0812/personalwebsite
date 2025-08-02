@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Project } from "../types/Project";
 import ProjectGallery from "./ProjectGallery";
 
@@ -17,9 +17,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
   onCameraImageChange,
   onUiImageChange,
 }) => {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
+  const toggleDropdown = (dropdownName: string) => {
+    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  };
+
   // Enhanced layout for all projects
   return (
-    <div className="glass-effect rounded-2xl p-8 shadow-2xl hover:shadow-[#3B82F6]/20 transition-all duration-500">
+    <div className="glass-effect rounded-2xl p-4 sm:p-6 lg:p-8 shadow-2xl hover:shadow-[#3B82F6]/20 transition-all duration-500">
       {/* Enhanced Header Section */}
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
@@ -58,11 +64,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         </div>
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-6 gap-8 lg:gap-12 xl:gap-16">
+      <div className="grid grid-cols-1 xl:grid-cols-6 gap-4 sm:gap-6 lg:gap-8 xl:gap-16">
         {/* Main Content - Left Column */}
-        <div className="space-y-8 lg:space-y-10 xl:col-span-3">
+        <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:col-span-3">
           {/* Enhanced Technologies Section */}
-          <div className="glass-effect rounded-xl p-6 lg:p-8">
+          <div className="glass-effect rounded-xl p-4 sm:p-6 lg:p-8">
             <h4 className="text-lg lg:text-xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 🛠️
@@ -101,8 +107,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                 </h5>
                 <div className="space-y-2 lg:space-y-3">
                   {project.title === "Cap@UVA" ? (
-                    <div className="group relative">
-                      <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                    <div className="relative">
+                      <div
+                        className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer"
+                        onClick={() => toggleDropdown("cap-uva-aws")}
+                      >
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           AWS
                         </span>
@@ -110,7 +119,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                           AWS Services
                         </span>
                         <svg
-                          className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                          className={`w-4 h-4 lg:w-5 lg:h-5 ml-2 transition-colors ${
+                            openDropdown === "cap-uva-aws"
+                              ? "text-white"
+                              : "text-gray-400"
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -125,7 +138,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       </div>
 
                       {/* AWS Services Dropdown */}
-                      <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                      <div
+                        className={`absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 transition-all duration-300 z-10 border border-gray-700 ${
+                          openDropdown === "cap-uva-aws"
+                            ? "opacity-100 visible"
+                            : "opacity-0 invisible"
+                        }`}
+                      >
                         <div className="grid grid-cols-1 gap-2 text-sm">
                           <div className="flex items-center text-gray-300 hover:text-white transition-colors">
                             <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
@@ -160,8 +179,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                     </div>
                   ) : project.title === "AI Business Card Analyzer" ? (
                     <>
-                      <div className="group relative">
-                        <div className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer">
+                      <div className="relative">
+                        <div
+                          className="flex items-center p-3 lg:p-4 glass-effect rounded-lg hover:bg-[#3B82F6]/10 transition-colors cursor-pointer"
+                          onClick={() => toggleDropdown("business-card-aws")}
+                        >
                           <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                             AWS
                           </span>
@@ -169,7 +191,11 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                             AWS Services
                           </span>
                           <svg
-                            className="w-4 h-4 lg:w-5 lg:h-5 ml-2 text-gray-400 group-hover:text-white transition-colors"
+                            className={`w-4 h-4 lg:w-5 lg:h-5 ml-2 transition-colors ${
+                              openDropdown === "business-card-aws"
+                                ? "text-white"
+                                : "text-gray-400"
+                            }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -184,7 +210,13 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         </div>
 
                         {/* AWS Services Dropdown for Business Card Analyzer */}
-                        <div className="absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 border border-gray-700">
+                        <div
+                          className={`absolute top-full left-0 right-0 mt-2 bg-gray-800/95 backdrop-blur-sm rounded-lg p-4 transition-all duration-300 z-10 border border-gray-700 ${
+                            openDropdown === "business-card-aws"
+                              ? "opacity-100 visible"
+                              : "opacity-0 invisible"
+                          }`}
+                        >
                           <div className="grid grid-cols-1 gap-2 text-sm">
                             <div className="flex items-center text-gray-300 hover:text-white transition-colors">
                               <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
@@ -399,7 +431,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
           </div>
 
           {/* Enhanced Project Overview */}
-          <div className="glass-effect rounded-xl p-6 lg:p-8">
+          <div className="glass-effect rounded-xl p-4 sm:p-6 lg:p-8">
             <h4 className="text-lg lg:text-xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 📝
@@ -544,7 +576,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
         {/* Enhanced Gallery - Right Column */}
         <div className="xl:col-span-3">
-          <div className="glass-effect rounded-xl p-6 lg:p-8">
+          <div className="glass-effect rounded-xl p-4 sm:p-6 lg:p-8">
             <h4 className="text-lg lg:text-xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 📸
