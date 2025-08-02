@@ -34,7 +34,6 @@ const ProjectsPage = () => {
       className="py-12 md:py-20 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white min-h-screen relative overflow-hidden"
       id="projects"
     >
-      {/* Animated background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 bg-[#3B82F6]/20 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-[#06B6D4]/20 rounded-full blur-3xl"></div>
