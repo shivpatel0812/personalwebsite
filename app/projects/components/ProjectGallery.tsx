@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Project } from "../types/Project";
-import ImageCarousel from "./ImageCarousel";
 
 interface ProjectGalleryProps {
   project: Project;
