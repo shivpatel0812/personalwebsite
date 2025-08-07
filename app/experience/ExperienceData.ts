@@ -14,10 +14,10 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
-    title: "Software Engineer Intern",
+    title: "Intern",
     company: "UDig",
-    location: "Richmond, VA (Remote)",
-    period: "Incoming Summer 2025",
+    location: "Richmond, VA",
+    period: "Summer 2025",
     description:
       "Built a full-stack image analysis application that enables users to upload images and find similar products using CLIP-based vector embeddings, real-time availability, and location data.",
     details: [
