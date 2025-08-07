@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -37,18 +38,24 @@ const Hero = () => {
 
             {/* Call to Action */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#projects"
+              <Link
+                href="/projects"
                 className="bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#3B82F6]/25 hover-glow text-center text-sm md:text-base"
               >
                 View Projects
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/experience"
+                className="bg-gradient-to-r from-[#10B981] to-[#059669] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#10B981]/25 hover-glow text-center text-sm md:text-base"
+              >
+                Experience
+              </Link>
+              <Link
+                href="/contact"
                 className="border-2 border-[#3B82F6] text-[#3B82F6] hover:bg-[#3B82F6] hover:text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover-glow text-center text-sm md:text-base"
               >
                 Contact Me
-              </a>
+              </Link>
             </div>
           </div>
 

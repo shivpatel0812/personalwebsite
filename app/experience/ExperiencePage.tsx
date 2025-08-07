@@ -15,6 +15,7 @@ const ExperiencePage = () => {
 
   const [selectedSectionIndex, setSelectedSectionIndex] = useState(0);
   const [showImageModal, setShowImageModal] = useState(false);
+  const [currentImageSrc, setCurrentImageSrc] = useState<string | null>(null);
 
   useEffect(() => {
     setSelectedSectionIndex(0);
@@ -41,6 +42,11 @@ const ExperiencePage = () => {
 
   const closeImageModal = () => {
     setShowImageModal(false);
+  };
+
+  const handleImageClick = (imageSrc: string) => {
+    setCurrentImageSrc(imageSrc);
+    setShowImageModal(true);
   };
 
   return (
@@ -75,6 +81,7 @@ const ExperiencePage = () => {
               selectedSectionIndex={selectedSectionIndex}
               onSectionSelect={setSelectedSectionIndex}
               onAwsClick={handleAwsTagClick}
+              onImageClick={handleImageClick}
             />
           ) : (
             <div className="flex-grow md:w-2/3 glass-effect rounded-lg shadow-lg p-6">
@@ -94,7 +101,7 @@ const ExperiencePage = () => {
 
       <ImageModal
         show={showImageModal}
-        imageSrc={null} // No longer needed
+        imageSrc={currentImageSrc}
         onClose={closeImageModal}
       />
     </section>

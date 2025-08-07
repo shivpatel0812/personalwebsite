@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Project } from "../types/Project";
+import { createPortal } from "react-dom";
 
 interface ProjectGalleryProps {
   project: Project;
@@ -340,59 +341,160 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
         </div>
 
         {/* Modal for Full-Size Image Viewing */}
-        {isModalOpen && modalImage && (
-          <div
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-            onClick={closeModal}
-          >
-            <div className="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
-              {/* Close button */}
-              <button
-                onClick={closeModal}
-                className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+        {isModalOpen &&
+          modalImage &&
+          createPortal(
+            <div
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center"
+              onClick={closeModal}
+            >
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                {/* Main Image Display */}
+                <div
+                  className="relative w-[80%] h-[60vh] flex items-center justify-center"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
-              {/* Image container */}
-              <div
-                className="relative w-full h-full flex items-center justify-center"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="relative w-full h-full max-w-4xl max-h-[90vh]">
-                  <Image
-                    src={modalImage.src}
-                    alt={modalImage.alt}
-                    fill
-                    className="object-contain"
-                  />
+                  {/* Close button positioned relative to the image content */}
+                  <button
+                    onClick={closeModal}
+                    className="absolute -top-4 -right-4 z-10 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-2"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={modalImage.src}
+                      alt={modalImage.alt}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
                 </div>
 
-                {/* Image info overlay */}
-                <div className="absolute bottom-4 left-4 right-4 bg-black/70 rounded-lg p-4">
-                  <h3 className="text-lg font-semibold text-white mb-1">
-                    {modalImage.title}
-                  </h3>
-                  <p className="text-sm text-gray-300">
-                    {modalImage.description}
-                  </p>
+                {/* Carousel Navigation */}
+                <div className="w-full flex flex-col items-center space-y-4 pb-4">
+                  {/* Navigation Buttons */}
+                  <div className="flex items-center space-x-4">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const currentIndex = project.images.findIndex(
+                          (img) => img === modalImage.src
+                        );
+                        const prevIndex =
+                          currentIndex <= 0
+                            ? project.images.length - 1
+                            : currentIndex - 1;
+                        const newImage = {
+                          src: project.images[prevIndex],
+                          alt: `${project.title} Screenshot ${prevIndex + 1}`,
+                          title: `${project.title} Screenshot ${prevIndex + 1}`,
+                          description: `Application screenshot showing ${project.title} interface`,
+                        };
+                        setModalImage(newImage);
+                      }}
+                      className="flex items-center text-sm text-gray-400 hover:text-white transition-colors bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-800"
+                    >
+                      <svg
+                        className="w-4 h-4 mr-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M15 19l-7-7 7-7"
+                        />
+                      </svg>
+                      Previous
+                    </button>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const currentIndex = project.images.findIndex(
+                          (img) => img === modalImage.src
+                        );
+                        const nextIndex =
+                          currentIndex >= project.images.length - 1 ||
+                          currentIndex === -1
+                            ? 0
+                            : currentIndex + 1;
+                        const newImage = {
+                          src: project.images[nextIndex],
+                          alt: `${project.title} Screenshot ${nextIndex + 1}`,
+                          title: `${project.title} Screenshot ${nextIndex + 1}`,
+                          description: `Application screenshot showing ${project.title} interface`,
+                        };
+                        setModalImage(newImage);
+                      }}
+                      className="flex items-center text-sm text-gray-400 hover:text-white transition-colors bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-800"
+                    >
+                      Next
+                      <svg
+                        className="w-4 h-4 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Carousel Dots */}
+                  <div className="flex space-x-2">
+                    {project.images.map((_, index) => {
+                      const currentIndex = project.images.findIndex(
+                        (img) => img === modalImage.src
+                      );
+                      return (
+                        <button
+                          key={index}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            const newImage = {
+                              src: project.images[index],
+                              alt: `${project.title} Screenshot ${index + 1}`,
+                              title: `${project.title} Screenshot ${index + 1}`,
+                              description: `Application screenshot showing ${project.title} interface`,
+                            };
+                            setModalImage(newImage);
+                          }}
+                          className={`w-3 h-3 rounded-full transition-all ${
+                            index === currentIndex ||
+                            (currentIndex === -1 && index === 0)
+                              ? "bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] scale-125"
+                              : "bg-gray-500 hover:bg-gray-400"
+                          }`}
+                        />
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        )}
+            </div>,
+            document.body
+          )}
       </>
     );
   }
@@ -416,12 +518,12 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
           </div>
 
           <div className="relative">
-            {/* Large Image Display - Square for non-Cap@UVA projects */}
+            {/* Large Image Display - Better aspect ratio for AI projects */}
             <div
               className={`relative w-full rounded-xl overflow-hidden shadow-2xl mb-6 cursor-pointer hover:scale-[1.02] transition-transform duration-300 ${
                 project.title === "Cap@UVA"
                   ? "h-80 sm:h-96 md:h-[600px]"
-                  : "h-80 sm:h-96 md:h-[500px] lg:h-[600px]"
+                  : "aspect-[4/3] sm:aspect-[3/2] md:aspect-[16/10] lg:aspect-[16/9] max-h-[600px]"
               }`}
               onClick={() =>
                 openModal({
@@ -436,7 +538,11 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 src={project.images[uiImageIndex]}
                 alt={`${project.title} Screenshot ${uiImageIndex + 1}`}
                 fill
-                className="object-cover bg-gray-900"
+                className={`${
+                  project.title === "Cap@UVA"
+                    ? "object-cover"
+                    : "object-contain"
+                } bg-gray-900`}
               />
               {/* Click to enlarge overlay */}
               <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
@@ -539,59 +645,160 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
       </div>
 
       {/* Modal for Full-Size Image Viewing */}
-      {isModalOpen && modalImage && (
-        <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-          onClick={closeModal}
-        >
-          <div className="relative max-w-4xl max-h-full w-full h-full flex items-center justify-center">
-            {/* Close button */}
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 z-10 text-white hover:text-gray-300 transition-colors"
-            >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+      {isModalOpen &&
+        modalImage &&
+        createPortal(
+          <div
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9999] flex items-center justify-center"
+            onClick={closeModal}
+          >
+            <div className="absolute inset-0 flex flex-col items-center justify-center">
+              {/* Main Image Display */}
+              <div
+                className="relative w-[80%] h-[60vh] flex items-center justify-center"
+                onClick={(e) => e.stopPropagation()}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-
-            {/* Image container */}
-            <div
-              className="relative w-full h-full flex items-center justify-center"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative w-full h-full max-w-4xl max-h-[90vh]">
-                <Image
-                  src={modalImage.src}
-                  alt={modalImage.alt}
-                  fill
-                  className="object-contain"
-                />
+                {/* Close button positioned relative to the image content */}
+                <button
+                  onClick={closeModal}
+                  className="absolute -top-4 -right-4 z-10 text-white hover:text-gray-300 transition-colors bg-black/50 rounded-full p-2"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+                <div className="relative w-full h-full">
+                  <Image
+                    src={modalImage.src}
+                    alt={modalImage.alt}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
 
-              {/* Image info overlay */}
-              <div className="absolute bottom-4 left-4 right-4 bg-black/70 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-white mb-1">
-                  {modalImage.title}
-                </h3>
-                <p className="text-sm text-gray-300">
-                  {modalImage.description}
-                </p>
+              {/* Carousel Navigation */}
+              <div className="w-full flex flex-col items-center space-y-4 pb-4">
+                {/* Navigation Buttons */}
+                <div className="flex items-center space-x-4">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currentIndex = project.images.findIndex(
+                        (img) => img === modalImage.src
+                      );
+                      const prevIndex =
+                        currentIndex <= 0
+                          ? project.images.length - 1
+                          : currentIndex - 1;
+                      const newImage = {
+                        src: project.images[prevIndex],
+                        alt: `${project.title} Screenshot ${prevIndex + 1}`,
+                        title: `${project.title} Screenshot ${prevIndex + 1}`,
+                        description: `Application screenshot showing ${project.title} interface`,
+                      };
+                      setModalImage(newImage);
+                    }}
+                    className="flex items-center text-sm text-gray-400 hover:text-white transition-colors bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-800"
+                  >
+                    <svg
+                      className="w-4 h-4 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                    Previous
+                  </button>
+
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const currentIndex = project.images.findIndex(
+                        (img) => img === modalImage.src
+                      );
+                      const nextIndex =
+                        currentIndex >= project.images.length - 1 ||
+                        currentIndex === -1
+                          ? 0
+                          : currentIndex + 1;
+                      const newImage = {
+                        src: project.images[nextIndex],
+                        alt: `${project.title} Screenshot ${nextIndex + 1}`,
+                        title: `${project.title} Screenshot ${nextIndex + 1}`,
+                        description: `Application screenshot showing ${project.title} interface`,
+                      };
+                      setModalImage(newImage);
+                    }}
+                    className="flex items-center text-sm text-gray-400 hover:text-white transition-colors bg-gray-800/50 px-4 py-2 rounded-lg hover:bg-gray-800"
+                  >
+                    Next
+                    <svg
+                      className="w-4 h-4 ml-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Carousel Dots */}
+                <div className="flex space-x-2">
+                  {project.images.map((_, index) => {
+                    const currentIndex = project.images.findIndex(
+                      (img) => img === modalImage.src
+                    );
+                    return (
+                      <button
+                        key={index}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          const newImage = {
+                            src: project.images[index],
+                            alt: `${project.title} Screenshot ${index + 1}`,
+                            title: `${project.title} Screenshot ${index + 1}`,
+                            description: `Application screenshot showing ${project.title} interface`,
+                          };
+                          setModalImage(newImage);
+                        }}
+                        className={`w-3 h-3 rounded-full transition-all ${
+                          index === currentIndex ||
+                          (currentIndex === -1 && index === 0)
+                            ? "bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] scale-125"
+                            : "bg-gray-500 hover:bg-gray-400"
+                        }`}
+                      />
+                    );
+                  })}
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </>
   );
 };

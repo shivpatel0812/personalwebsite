@@ -1,5 +1,5 @@
 import React from "react";
-import TechStack from "../../src/components/TechStack";
+import TechStack from "@/components/TechStack";
 
 const TechStackPage = () => {
   return (

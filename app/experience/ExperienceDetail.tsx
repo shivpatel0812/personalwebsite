@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { ExperienceItem } from "./ExperienceData";
@@ -11,6 +11,7 @@ interface ExperienceDetailProps {
   selectedSectionIndex: number;
   onSectionSelect: (index: number) => void;
   onAwsClick: (services: string[]) => void;
+  onImageClick?: (imageSrc: string) => void;
 }
 
 const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
@@ -19,16 +20,35 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
   selectedSectionIndex,
   onSectionSelect,
   onAwsClick,
+  onImageClick,
 }) => {
   const [currentMobileSection, setCurrentMobileSection] = useState(0);
 
+  // Ensure selectedSectionIndex is within bounds
+  useEffect(() => {
+    if (selectedSectionIndex >= experience.details.length) {
+      onSectionSelect(0);
+    }
+  }, [experience.details.length, selectedSectionIndex, onSectionSelect]);
+
+  // Ensure currentMobileSection is within bounds
+  useEffect(() => {
+    if (experience.details && experience.details.length > 0) {
+      if (currentMobileSection >= experience.details.length) {
+        setCurrentMobileSection(0);
+      }
+    }
+  }, [experience.details, currentMobileSection]);
+
   const nextSection = () => {
+    if (!experience.details || experience.details.length === 0) return;
     const next = (currentMobileSection + 1) % experience.details.length;
     setCurrentMobileSection(next);
     onSectionSelect(next);
   };
 
   const prevSection = () => {
+    if (!experience.details || experience.details.length === 0) return;
     const prev =
       (currentMobileSection - 1 + experience.details.length) %
       experience.details.length;
@@ -62,6 +82,24 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
     }
   };
 
+  // Safety check for experience object
+  if (!experience || !experience.details || experience.details.length === 0) {
+    return (
+      <motion.div
+        key={selectedIndex}
+        className={`flex-grow md:w-2/3 glass-effect rounded-lg shadow-lg ${getShadowColor()} overflow-hidden p-6`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 20 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-center justify-center h-64">
+          <p className="text-gray-300">No experience details available.</p>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       key={selectedIndex}
@@ -81,7 +119,14 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
               selectedIndex === 3
                 ? "relative w-[calc(100%+3rem)] h-48 md:h-60 mb-4 -ml-6 -mr-6 -mt-6"
                 : "relative w-64 h-64 mb-4 mx-auto md:mx-0"
+            } ${
+              onImageClick
+                ? "cursor-pointer hover:opacity-90 transition-opacity"
+                : ""
             }`}
+            onClick={() =>
+              onImageClick && experience.image && onImageClick(experience.image)
+            }
           >
             <Image
               src={experience.image}
@@ -236,11 +281,12 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                       }`}
                     ></span>
                     <h4 className="font-semibold text-white text-sm">
-                      {experience.details[currentMobileSection].title}
+                      {experience.details[currentMobileSection]?.title ||
+                        "Loading..."}
                     </h4>
                   </div>
                   <div className="space-y-2">
-                    {experience.details[currentMobileSection].points.map(
+                    {experience.details[currentMobileSection]?.points?.map(
                       (point, index) => (
                         <div key={index} className="flex items-start">
                           <span
@@ -282,7 +328,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                   </button>
 
                   <div className="flex items-center space-x-1">
-                    {experience.details.map((_, index) => (
+                    {experience.details?.map((_, index) => (
                       <button
                         key={index}
                         onClick={() => {
@@ -324,7 +370,8 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
 
                 <div className="text-center mt-2">
                   <span className="text-xs text-gray-400">
-                    {currentMobileSection + 1} of {experience.details.length}
+                    {currentMobileSection + 1} of{" "}
+                    {experience.details?.length || 0}
                   </span>
                 </div>
               </div>
@@ -344,7 +391,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                     : "bg-blue-500"
                 }`}
               ></div>
-              {experience.details.map((section, index) => (
+              {experience.details?.map((section, index) => (
                 <button
                   key={index}
                   className={`relative z-10 block w-full text-left px-4 py-3 rounded-lg transition-colors duration-200 border ${
@@ -365,10 +412,11 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
             <div className="flex-grow">
               <div className="bg-gray-800 rounded-lg p-4">
                 <h4 className="font-semibold mb-2 text-white">
-                  {experience.details[selectedSectionIndex].title}
+                  {experience.details[selectedSectionIndex]?.title ||
+                    "No title available"}
                 </h4>
                 <div className="text-sm text-gray-300">
-                  {experience.details[selectedSectionIndex].points.map(
+                  {experience.details[selectedSectionIndex]?.points?.map(
                     (point, index) => (
                       <div key={index} className="mb-2">
                         <span
@@ -385,7 +433,7 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                         {point}
                       </div>
                     )
-                  )}
+                  ) || <p className="text-gray-400">No details available</p>}
                 </div>
               </div>
             </div>

@@ -19,78 +19,79 @@ export const experiences: ExperienceItem[] = [
     location: "Richmond, VA (Remote)",
     period: "Incoming Summer 2025",
     description:
-      "Architected and developed a full-stack AI-powered visual product search platform using CLIP-based vector similarity, enabling users to upload images and discover visually similar retail products with real-time availability and location data.",
+      "Built a full-stack image analysis application that enables users to upload images and find similar products using CLIP-based vector embeddings, real-time availability, and location data.",
     details: [
       {
-        title: "🎯 Project Architecture & System Design",
+        title: "🎯 Summary",
         points: [
-          "Designed a microservices architecture with FastAPI backend (25+ endpoints) handling image processing, vector search, and product metadata retrieval, connected to a React/TypeScript frontend with Redux state management.",
-          "Implemented a three-tier data pipeline: image ingestion → CLIP vectorization → PostgreSQL vector storage with pgvector extension for efficient similarity search using cosine distance algorithms.",
-          "Built a modular ingestion framework supporting both CSV batch processing and real-time API integration with Ferguson's product catalog, featuring resumable operations and progress tracking.",
+          "Built a full-stack image analysis application that combines AI-powered visual search with real-time product matching. The system allows users to upload images and instantly find similar products using advanced vector embeddings and intelligent ranking algorithms.",
+          "Worked in a 4-person intern team alongside full-time engineers, participating in Agile sprints, daily standups, and code reviews.",
+          "Collaborated on architectural decisions, testing workflows, and production-readiness criteria aligned with client goals.",
+          "Received mentorship from engineers across different projects in the company, gaining insights into various technical approaches and best practices.",
+        ],
+      },
+      {
+        title: "🏗️ Project Architecture & System Design",
+        points: [
+          "Designed a modular microservices architecture using FastAPI, PostgreSQL, Docker, and a React/TypeScript frontend with Redux state management.",
+          "Built a production-ready ingestion pipeline for large-scale product image ingestion, featuring resume logic, batch control, progress tracking, and system monitoring.",
+          "Integrated an OAuth2-based token manager to handle multi-environment authentication with persistent credentials and automatic refresh logic.",
         ],
       },
       {
         title: "🤖 AI/ML Pipeline & Vector Search",
         points: [
-          "Engineered a production-ready CLIP-based image encoding pipeline using OpenAI's CLIP model to generate 512-dimensional vector embeddings for product images and user uploads.",
-          "Implemented advanced similarity search algorithms with configurable similarity thresholds, supporting multi-view image processing and result merging for improved accuracy.",
-          "Optimized vector search performance using PostgreSQL's pgvector extension with HNSW indexing, enabling sub-second queries across 50K+ product vectors.",
+          "Developed a CLIP-based embedding system to convert user-uploaded and catalog images into 512-dimensional vectors for similarity search.",
+          "Implemented optimized vector search with pgvector and HNSW indexing, supporting multi-view image input with weighted result merging for improved accuracy.",
+          "Supported configurable similarity thresholds, metadata enrichment, and responsive ranking logic to enhance product matching precision.",
         ],
       },
       {
         title: "💻 Frontend Architecture & UX",
         points: [
-          "Developed a responsive React application with TypeScript, featuring drag-and-drop image uploads, real-time camera integration, and dynamic product result displays using Tailwind CSS.",
-          "Implemented Redux Toolkit for managing app-wide state including location selection, ingestion control, and user history, with custom hooks for modular logic.",
-          "Built rich UI components such as expandable product cards, location filtering, ingestion progress indicators, and confidence scoring overlays.",
+          "Engineered a mobile-first React application with drag-and-drop uploads, real-time camera input, and responsive results display using Tailwind CSS.",
+          "Used Redux Toolkit and React Query to manage search state, ingestion status, and cached results with seamless navigation and UX continuity.",
+          "Built advanced UI components including product comparison views, ingestion feedback panels, and availability/location overlays.",
         ],
       },
       {
-        title: "⚙️ Backend API Development",
+        title: "⚙️ Backend Development",
         points: [
-          "Built RESTful FastAPI endpoints for key workflows: `/search-similar/`, `/ingestion-status/`, `/locations/`, and `/product-availability/`, powering the full application lifecycle.",
-          "Implemented asynchronous processing using background workers with retry logic, throughput metrics, and ETA tracking for ingestion and search operations.",
-          "Added robust error handling with timeouts, fallbacks, and custom response codes for graceful API behavior under load or failure.",
+          "Implemented FastAPI services to handle search, ingestion orchestration, vector generation, history tracking, and result merging.",
+          "Integrated background job processing with retry logic, ETA estimation, and throughput monitoring to ensure system reliability at scale.",
+          "Designed backend to be stateless and horizontally scalable, compatible with containerized deployment and future cloud migration.",
         ],
       },
       {
         title: "🗄️ Database Design & Optimization",
         points: [
-          "Designed a normalized PostgreSQL schema including tables for vector storage, metadata indexing, user history, and ingestion logs with relational integrity constraints.",
-          "Leveraged pgvector for cosine similarity search, indexing embedding columns for fast KNN lookups and approximate nearest neighbor search with HNSW.",
-          "Added cleanup routines and archival logic for stale data, preserving database performance and enabling historical analysis.",
+          "Designed normalized PostgreSQL schema for image embeddings, product metadata, user history, and ingestion logs.",
+          "Leveraged pgvector for cosine similarity and HNSW indexing, enabling sub-second KNN queries over 50K+ product embeddings.",
+          "Added archival and cleanup routines to preserve performance and allow for long-term analysis.",
         ],
       },
       {
         title: "🔧 DevOps & Infrastructure",
         points: [
-          "Dockerized backend services, CLIP pipeline, and frontend application with multi-stage builds and optimized container size for rapid deployment.",
-          "Configured CI workflows with Pytest (unit/integration coverage) and Playwright (E2E testing), along with visual snapshot testing of critical UI flows.",
-          "Instrumented logging and metrics collection across endpoints and ingestion pipeline to monitor search performance and identify bottlenecks.",
+          "Containerized all services using Docker with `docker-compose` setup, health checks, and volume-mounted persistence for local and CI deployment.",
+          "Configured CI pipelines with Pytest for unit/integration testing and Playwright for full E2E and UI regression testing.",
+          "Instrumented logs and metrics across backend and ingestion systems to track bottlenecks and monitor throughput.",
         ],
       },
       {
         title: "🔐 Security & Authentication",
         points: [
-          "Integrated Azure Active Directory using OAuth2 for secure user authentication and session management across the frontend and backend.",
-          "Validated file uploads for size, type, and integrity to prevent injection attacks and service abuse.",
-          "Implemented RBAC for user-level access control over ingestion triggers, history access, and result views, preserving data isolation.",
+          "Implemented secure login with Azure AD using OAuth2 across frontend and backend, managing user tokens and permissions.",
+          "Hardened file upload logic against abuse with validation on file type, size, and integrity.",
+          "Added RBAC mechanisms to control access to ingestion triggers, search results, and historical logs.",
         ],
       },
       {
         title: "🚀 Performance & Scalability",
         points: [
-          "Achieved fast vector search performance through index tuning, connection pooling, and precomputed retrieval logic for frequent queries.",
-          "Used caching strategies for metadata and location data to reduce backend calls and speed up frontend loading.",
-          "Enabled future scalability with stateless service design, horizontal backend architecture, and compatibility with load balancers.",
-        ],
-      },
-      {
-        title: "👥 Collaboration & Team Experience",
-        points: [
-          "Worked within a 4-person intern team under the guidance of full-time engineers, contributing to shared codebases and coordinated feature development.",
-          "Joined code reviews, architecture discussions, and mentoring sessions to deepen understanding of scalable system design and AI product deployment.",
-          "Collaborated cross-functionally with designers and PMs to define product requirements, user journeys, and testing workflows aligned with business goals.",
+          "Enabled sub-second similarity search via HNSW index tuning, connection pooling, and vector caching strategies.",
+          "Optimized backend startup, search latency, and image ingestion with async pipelines and concurrent job scheduling.",
+          "Designed for scale with decoupled services and fault-tolerant queue handling for future production load.",
         ],
       },
     ],
@@ -98,6 +99,7 @@ export const experiences: ExperienceItem[] = [
       "React",
       "TypeScript",
       "Redux Toolkit",
+      "React Query",
       "Tailwind CSS",
       "FastAPI",
       "Python",

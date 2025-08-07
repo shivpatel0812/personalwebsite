@@ -102,22 +102,24 @@ export const ImageModal: React.FC<ImageModalProps> = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-4"
         onClick={onClose}
       >
+        {/* Main Image Container */}
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="relative max-w-4xl max-h-[90vh] w-full"
+          className="relative w-full max-w-7xl h-[85vh] flex items-center justify-center"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Close button positioned relative to the modal content */}
           <button
             onClick={onClose}
-            className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+            className="absolute -top-4 -right-4 z-20 text-white hover:text-gray-300 transition-colors bg-black/60 backdrop-blur-sm rounded-full p-3 border border-white/20"
           >
             <svg
-              className="w-8 h-8"
+              className="w-6 h-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -130,14 +132,16 @@ export const ImageModal: React.FC<ImageModalProps> = ({
               />
             </svg>
           </button>
-
-          <Image
-            src={imageSrc}
-            alt="Experience"
-            width={1200}
-            height={800}
-            className="w-full h-auto max-h-[90vh] object-contain rounded-lg shadow-2xl"
-          />
+          {/* Image */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            <Image
+              src={imageSrc}
+              alt="Experience Screenshot"
+              fill
+              className="object-contain rounded-lg"
+              sizes="(max-width: 768px) 95vw, (max-width: 1200px) 80vw, 70vw"
+            />
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>

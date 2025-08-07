@@ -30,10 +30,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
       <div className="mb-8">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
           <div>
-            <h2 className="text-4xl lg:text-5xl font-bold mb-3 gradient-text">
+            <h2 className="text-3xl lg:text-4xl font-bold mb-3 gradient-text">
               {project.title}
             </h2>
-            <p className="text-lg lg:text-xl text-gray-300 mb-4">
+            <p className="text-base lg:text-lg text-gray-300 mb-4">
               {project.title === "Cap@UVA"
                 ? "Real-time occupancy tracking for UVA campus spaces"
                 : project.title === "AI Business Card Analyzer"
@@ -69,7 +69,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
         <div className="space-y-6 sm:space-y-8 lg:space-y-10 xl:col-span-3">
           {/* Enhanced Technologies Section */}
           <div className="glass-effect rounded-xl p-4 sm:p-6 lg:p-8">
-            <h4 className="text-lg lg:text-xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
+            <h4 className="text-sm lg:text-base font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 🛠️
               </span>
@@ -78,7 +78,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
               <div>
-                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                <h5 className="text-xs font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
                   Frontend & Mobile
                 </h5>
                 <div className="space-y-2 lg:space-y-3">
@@ -86,7 +86,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                     <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                       RN
                     </span>
-                    <span className="text-white font-medium lg:text-lg">
+                    <span className="text-white font-medium text-xs lg:text-sm">
                       React Native
                     </span>
                   </div>
@@ -94,7 +94,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                     <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-600 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                       R
                     </span>
-                    <span className="text-white font-medium lg:text-lg">
+                    <span className="text-white font-medium text-xs lg:text-sm">
                       React
                     </span>
                   </div>
@@ -102,7 +102,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
               </div>
 
               <div>
-                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                <h5 className="text-xs font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
                   Backend & Cloud
                 </h5>
                 <div className="space-y-2 lg:space-y-3">
@@ -115,7 +115,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           AWS
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           AWS Services
                         </span>
                         <svg
@@ -187,7 +187,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                           <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                             AWS
                           </span>
-                          <span className="text-white font-medium lg:text-lg">
+                          <span className="text-white font-medium text-xs lg:text-sm">
                             AWS Services
                           </span>
                           <svg
@@ -239,7 +239,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                           <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                             GC
                           </span>
-                          <span className="text-white font-medium lg:text-lg">
+                          <span className="text-white font-medium text-xs lg:text-sm">
                             Google Cloud
                           </span>
                           <svg
@@ -278,7 +278,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-orange-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           AWS
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           AWS Services
                         </span>
                         <svg
@@ -331,7 +331,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
               </div>
 
               <div>
-                <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                <h5 className="text-xs font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
                   AI & Computer Vision
                 </h5>
                 <div className="space-y-2 lg:space-y-3">
@@ -341,7 +341,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-red-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           YOLO
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           YOLO
                         </span>
                       </div>
@@ -349,7 +349,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           DS
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           DeepSORT
                         </span>
                       </div>
@@ -359,7 +359,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                         AI
                       </span>
-                      <span className="text-white font-medium lg:text-lg">
+                      <span className="text-white font-medium text-xs lg:text-sm">
                         OpenAI
                       </span>
                     </div>
@@ -369,7 +369,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           LC
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           LangChain
                         </span>
                       </div>
@@ -377,7 +377,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           AI
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           Claude AI
                         </span>
                       </div>
@@ -385,7 +385,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                         <span className="w-8 h-8 lg:w-10 lg:h-10 bg-purple-500 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                           CV
                         </span>
-                        <span className="text-white font-medium lg:text-lg">
+                        <span className="text-white font-medium text-xs lg:text-sm">
                           Computer Vision
                         </span>
                       </div>
@@ -396,7 +396,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
               {project.title === "Cap@UVA" && (
                 <div>
-                  <h5 className="text-sm lg:text-base font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
+                  <h5 className="text-xs font-medium text-gray-400 mb-3 lg:mb-4 uppercase tracking-wide">
                     Hardware & Edge
                   </h5>
                   <div className="space-y-2 lg:space-y-3">
@@ -404,7 +404,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gray-600 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                         PI
                       </span>
-                      <span className="text-white font-medium lg:text-lg">
+                      <span className="text-white font-medium text-xs lg:text-sm">
                         Raspberry Pi 5
                       </span>
                     </div>
@@ -412,7 +412,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       <span className="w-8 h-8 lg:w-10 lg:h-10 bg-blue-400 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                         📷
                       </span>
-                      <span className="text-white font-medium lg:text-lg">
+                      <span className="text-white font-medium text-xs lg:text-sm">
                         Camera Module
                       </span>
                     </div>
@@ -420,7 +420,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       <span className="w-8 h-8 lg:w-10 lg:h-10 bg-green-400 rounded-lg flex items-center justify-center mr-3 text-white text-sm lg:text-base font-bold">
                         ❄️
                       </span>
-                      <span className="text-white font-medium lg:text-lg">
+                      <span className="text-white font-medium text-xs lg:text-sm">
                         Cooling Unit
                       </span>
                     </div>
@@ -432,7 +432,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
 
           {/* Enhanced Project Overview */}
           <div className="glass-effect rounded-xl p-4 sm:p-6 lg:p-8">
-            <h4 className="text-lg lg:text-xl font-semibold mb-6 lg:mb-8 text-white flex items-center">
+            <h4 className="text-sm lg:text-base font-semibold mb-6 lg:mb-8 text-white flex items-center">
               <span className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm lg:text-base">
                 📝
               </span>
@@ -447,10 +447,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                   </span>
                 </div>
                 <div>
-                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                  <h5 className="text-sm lg:text-base font-semibold text-white mb-2 lg:mb-3">
                     The Problem
                   </h5>
-                  <p className="text-gray-300 leading-relaxed lg:text-lg">
+                  <p className="text-gray-300 leading-relaxed text-xs lg:text-sm">
                     {project.title === "Cap@UVA"
                       ? "Students struggled to find open study spaces and gym areas at UVA during peak hours, with no way to check real-time capacity of buildings like Clemons Library or the AFC gym."
                       : project.title === "AI Business Card Analyzer"
@@ -467,10 +467,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                   </span>
                 </div>
                 <div>
-                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                  <h5 className="text-sm lg:text-base font-semibold text-white mb-2 lg:mb-3">
                     The Solution
                   </h5>
-                  <p className="text-gray-300 leading-relaxed lg:text-lg">
+                  <p className="text-gray-300 leading-relaxed text-xs lg:text-sm">
                     {project.title === "Cap@UVA"
                       ? "Built an edge-compute system using Raspberry Pi 5 devices with connected cameras, running YOLO to detect individuals entering or exiting locations. Data is processed locally for privacy, then pushed to AWS via Node.js API."
                       : project.title === "AI Business Card Analyzer"
@@ -487,10 +487,10 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                   </span>
                 </div>
                 <div>
-                  <h5 className="text-lg lg:text-xl font-semibold text-white mb-2 lg:mb-3">
+                  <h5 className="text-sm lg:text-base font-semibold text-white mb-2 lg:mb-3">
                     Key Features
                   </h5>
-                  <ul className="text-gray-300 leading-relaxed space-y-2 lg:space-y-3 lg:text-lg">
+                  <ul className="text-gray-300 leading-relaxed space-y-2 lg:space-y-3 text-xs lg:text-sm">
                     {project.title === "Cap@UVA" ? (
                       <>
                         <li>

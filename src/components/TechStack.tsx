@@ -28,39 +28,98 @@ const techCategories: TechCategory[] = [
     color: "from-blue-500 to-cyan-500",
   },
   {
-    title: "Dev Tools",
-    icon: "🛠️",
+    title: "Frameworks & Libraries",
+    icon: "⚡",
     skills: [
       "React",
       "React Native",
-      "GitHub",
+      "Next.js",
+      "Node.js",
+      "Express.js",
+      "FastAPI",
+      "Vite",
+      "Tailwind CSS",
+      "Redux",
+      "React Query",
+    ],
+    color: "from-green-500 to-emerald-500",
+  },
+  {
+    title: "Databases",
+    icon: "🗄️",
+    skills: ["PostgreSQL", "MongoDB", "Firebase", "SQLite"],
+    color: "from-purple-500 to-pink-500",
+  },
+  {
+    title: "AWS Services",
+    icon: "☁️",
+    skills: [
+      "AWS S3",
+      "AWS Lambda",
+      "AWS SQS",
+      "AWS ECR",
+      "AWS ECS",
+      "AWS EC2",
+      "AWS API Gateway",
+      "AWS RDS",
+      "AWS DynamoDB",
+      "AWS Route 53",
+      "AWS Amplify",
+      "AWS Greengrass",
+      "AWS Device Defender",
+      "AWS IoT Core",
+      "AWS CloudWatch",
+    ],
+    color: "from-orange-500 to-red-500",
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: "🚀",
+    skills: [
       "AWS",
       "Google Cloud",
       "Azure",
       "Docker",
-      "OpenAI API",
-      "Langchain",
-      "Gradle",
+      "CI/CD",
+      "Vercel",
+      "Xcode",
     ],
-    color: "from-purple-500 to-pink-500",
+    color: "from-indigo-500 to-purple-500",
   },
   {
-    title: "Frameworks & Stack",
-    icon: "⚡",
+    title: "AI & ML",
+    icon: "🤖",
     skills: [
-      "Node.js",
-      "Express.js",
-      "FastAPI",
-      "Next.js",
-      "Vite",
-      "Tailwind",
-      "PostgreSQL",
-      "MongoDB",
+      "OpenAI API",
+      "Claude API",
+      "Langchain",
+      "CLIP",
+      "YOLO",
+      "TensorFlow",
+      "PyTorch",
+      "ONNX",
+      "Scikit-learn",
+      "Pandas",
+      "LLaMA",
+      "RAG",
+    ],
+    color: "from-teal-500 to-cyan-500",
+  },
+  {
+    title: "Dev Tools & Testing",
+    icon: "🛠️",
+    skills: [
+      "GitHub",
+      "Git",
       "JUnit",
       "pytest",
       "Playwright",
+      "Gradle",
+      "npm",
+      "ESLint",
+      "Prettier",
     ],
-    color: "from-green-500 to-emerald-500",
+    color: "from-orange-500 to-red-500",
   },
 ];
 
@@ -148,7 +207,7 @@ const TechStack = () => {
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-10 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon"
+              className="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
             >
               <svg
                 className="w-4 h-4 md:w-5 md:h-5 text-white"
@@ -168,7 +227,7 @@ const TechStack = () => {
             <button
               onClick={nextSlide}
               disabled={currentIndex === techCategories.length - 1}
-              className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-10 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon"
+              className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
             >
               <svg
                 className="w-4 h-4 md:w-5 md:h-5 text-white"
@@ -285,23 +344,48 @@ const TechStack = () => {
           </div>
 
           {/* Category Labels */}
-          <div className="flex flex-col sm:flex-row justify-center mt-8 md:mt-12 space-y-2 sm:space-y-0 sm:space-x-6">
-            {techCategories.map((category, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`flex items-center justify-center sm:justify-start space-x-2 md:space-x-3 px-4 md:px-6 py-2 md:py-3 rounded-xl md:rounded-2xl transition-all duration-300 ${
-                  index === currentIndex
-                    ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/50 neon-glow"
-                    : "text-gray-300 hover:text-white hover:bg-white/10 glass-effect hover-neon"
-                }`}
-              >
-                <span className="text-lg md:text-xl">{category.icon}</span>
-                <span className="font-medium text-sm md:text-base">
-                  {category.title}
-                </span>
-              </button>
-            ))}
+          <div className="mt-8 md:mt-12">
+            {/* Mobile: Scrollable horizontal list */}
+            <div className="sm:hidden overflow-x-auto pb-4">
+              <div className="flex space-x-3 min-w-max px-4">
+                {techCategories.map((category, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 whitespace-nowrap ${
+                      index === currentIndex
+                        ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/50 neon-glow"
+                        : "text-gray-300 hover:text-white hover:bg-white/10 glass-effect hover-neon"
+                    }`}
+                  >
+                    <span className="text-lg">{category.icon}</span>
+                    <span className="font-medium text-sm">
+                      {category.title}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop: Grid layout */}
+            <div className="hidden sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
+              {techCategories.map((category, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`flex flex-col items-center space-y-2 px-3 md:px-4 py-3 md:py-4 rounded-xl md:rounded-2xl transition-all duration-300 ${
+                    index === currentIndex
+                      ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/50 neon-glow"
+                      : "text-gray-300 hover:text-white hover:bg-white/10 glass-effect hover-neon"
+                  }`}
+                >
+                  <span className="text-xl md:text-2xl">{category.icon}</span>
+                  <span className="font-medium text-xs md:text-sm text-center leading-tight">
+                    {category.title}
+                  </span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
