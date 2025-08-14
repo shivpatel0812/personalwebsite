@@ -166,33 +166,33 @@ const TechStack = () => {
   }, [currentIndex, nextSlide, prevSlide]);
 
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white min-h-screen relative overflow-hidden">
+    <section className="py-8 md:py-12 bg-gradient-to-br from-[#0F172A] to-[#1E293B] text-white min-h-screen relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-48 md:w-72 h-48 md:h-72 bg-[#3B82F6]/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-64 md:w-96 h-64 md:h-96 bg-[#06B6D4]/20 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-64 h-48 md:h-64 bg-[#3B82F6]/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-16 left-8 w-32 md:w-48 h-32 md:h-48 bg-[#3B82F6]/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-16 right-8 w-40 md:w-64 h-40 md:h-64 bg-[#06B6D4]/20 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 md:w-48 h-32 md:h-48 bg-[#3B82F6]/15 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-4xl md:text-6xl font-light mb-4 md:mb-6 gradient-text tracking-tight">
+        <div className="text-center mb-6 md:mb-10">
+          <h2 className="text-3xl md:text-5xl font-light mb-3 md:mb-4 gradient-text tracking-tight">
             Tech Stack
           </h2>
-          <p className="text-base md:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed px-4">
+          <p className="text-sm md:text-base text-gray-300 max-w-xl mx-auto leading-relaxed px-4">
             A curated collection of technologies and tools I use to bring ideas
             to life
           </p>
         </div>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {/* Navigation Dots */}
-          <div className="flex justify-center mb-8 md:mb-12 space-x-3 md:space-x-4">
+          <div className="flex justify-center mb-6 md:mb-8 space-x-2 md:space-x-3">
             {techCategories.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 md:w-4 md:h-4 rounded-full transition-all duration-300 ${
+                className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? "bg-[#3B82F6] scale-125 shadow-lg shadow-[#3B82F6]/50 neon-glow"
                     : "bg-gray-600 hover:bg-gray-500"
@@ -202,15 +202,15 @@ const TechStack = () => {
           </div>
 
           {/* Carousel Container */}
-          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl glass-effect p-4 md:p-12 shadow-2xl">
+          <div className="relative overflow-hidden rounded-xl md:rounded-2xl glass-effect p-3 md:p-8 shadow-2xl">
             {/* Navigation Arrows */}
             <button
               onClick={prevSlide}
               disabled={currentIndex === 0}
-              className="absolute left-2 md:left-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
+              className="absolute left-1 md:left-4 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-1.5 md:p-3 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
             >
               <svg
-                className="w-4 h-4 md:w-5 md:h-5 text-white"
+                className="w-3 h-3 md:w-4 md:h-4 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -227,10 +227,10 @@ const TechStack = () => {
             <button
               onClick={nextSlide}
               disabled={currentIndex === techCategories.length - 1}
-              className="absolute right-2 md:right-6 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-2 md:p-4 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
+              className="absolute right-1 md:right-4 top-1/2 transform -translate-y-1/2 z-20 glass-effect hover:bg-[#3B82F6]/20 disabled:opacity-50 disabled:cursor-not-allowed rounded-full p-1.5 md:p-3 shadow-lg transition-all duration-200 hover:shadow-[#3B82F6]/20 hover-neon cursor-pointer"
             >
               <svg
-                className="w-4 h-4 md:w-5 md:h-5 text-white"
+                className="w-3 h-3 md:w-4 md:h-4 text-white"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -265,7 +265,7 @@ const TechStack = () => {
               {techCategories.map((category, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 w-full px-2 md:px-4"
+                  className="flex-shrink-0 w-full px-2 md:px-3"
                   style={{ width: `${100 / techCategories.length}%` }}
                 >
                   <motion.div
@@ -281,18 +281,18 @@ const TechStack = () => {
                     }`}
                   >
                     {/* Category Header */}
-                    <div className="mb-6 md:mb-12">
-                      <div className="text-4xl md:text-7xl mb-3 md:mb-6 opacity-80">
+                    <div className="mb-4 md:mb-8">
+                      <div className="text-3xl md:text-5xl mb-2 md:mb-4 opacity-80">
                         {category.icon}
                       </div>
-                      <h3 className="text-2xl md:text-4xl font-light mb-2 md:mb-4 text-white tracking-tight">
+                      <h3 className="text-xl md:text-3xl font-light mb-2 md:mb-3 text-white tracking-tight">
                         {category.title}
                       </h3>
-                      <div className="w-20 md:w-32 h-0.5 mx-auto bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] rounded-full" />
+                      <div className="w-16 md:w-24 h-0.5 mx-auto bg-gradient-to-r from-[#3B82F6] to-[#06B6D4] rounded-full" />
                     </div>
 
                     {/* Skills Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4">
                       {category.skills.map((skill, skillIndex) => (
                         <motion.div
                           key={skillIndex}
@@ -306,9 +306,9 @@ const TechStack = () => {
                             scale: 1.03,
                             transition: { duration: 0.2 },
                           }}
-                          className="p-3 md:p-6 rounded-xl md:rounded-2xl glass-effect hover:bg-[#3B82F6]/10 hover:shadow-[#3B82F6]/20 transition-all duration-300 cursor-pointer group hover-glow hover-neon"
+                          className="p-2 md:p-4 rounded-lg md:rounded-xl glass-effect hover:bg-[#3B82F6]/10 hover:shadow-[#3B82F6]/20 transition-all duration-300 cursor-pointer group hover-glow hover-neon"
                         >
-                          <div className="text-sm md:text-lg font-medium text-white group-hover:text-white transition-colors duration-300 text-center">
+                          <div className="text-xs md:text-sm font-medium text-white group-hover:text-white transition-colors duration-300 text-center">
                             {skill}
                           </div>
                         </motion.div>
@@ -318,12 +318,14 @@ const TechStack = () => {
                 </div>
               ))}
             </motion.div>
+          </div>
 
-            {/* Drag Indicator */}
-            <div className="absolute bottom-3 md:bottom-6 left-1/2 transform -translate-x-1/2 text-gray-300 text-xs md:text-sm">
-              <div className="flex items-center space-x-2 glass-effect px-3 md:px-4 py-1 md:py-2 rounded-full">
+          {/* Drag Indicator - Moved above category navigation */}
+          <div className="flex justify-center mt-4 md:mt-6 mb-2 md:mb-4">
+            <div className="text-gray-300 text-xs">
+              <div className="flex items-center space-x-2 glass-effect px-2 md:px-3 py-1 md:py-1.5 rounded-full">
                 <svg
-                  className="w-3 h-3 md:w-4 md:h-4"
+                  className="w-2.5 h-2.5 md:w-3 md:h-3"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -335,31 +337,31 @@ const TechStack = () => {
                     d="M8 9l4-4 4 4m0 6l-4 4-4-4"
                   />
                 </svg>
-                <span className="font-medium hidden sm:inline">
+                <span className="font-medium hidden sm:inline text-xs">
                   Drag to navigate
                 </span>
-                <span className="font-medium sm:hidden">Swipe</span>
+                <span className="font-medium sm:hidden text-xs">Swipe</span>
               </div>
             </div>
           </div>
 
           {/* Category Labels */}
-          <div className="mt-8 md:mt-12">
+          <div className="mt-6 md:mt-8">
             {/* Mobile: Scrollable horizontal list */}
-            <div className="sm:hidden overflow-x-auto pb-4">
-              <div className="flex space-x-3 min-w-max px-4">
+            <div className="sm:hidden overflow-x-auto pb-3">
+              <div className="flex space-x-2 min-w-max px-4">
                 {techCategories.map((category, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentIndex(index)}
-                    className={`flex items-center space-x-2 px-4 py-2 rounded-xl transition-all duration-300 whitespace-nowrap ${
+                    className={`flex items-center space-x-2 px-3 py-1.5 rounded-lg transition-all duration-300 whitespace-nowrap ${
                       index === currentIndex
                         ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/50 neon-glow"
                         : "text-gray-300 hover:text-white hover:bg-white/10 glass-effect hover-neon"
                     }`}
                   >
-                    <span className="text-lg">{category.icon}</span>
-                    <span className="font-medium text-sm">
+                    <span className="text-base">{category.icon}</span>
+                    <span className="font-medium text-xs">
                       {category.title}
                     </span>
                   </button>
@@ -368,19 +370,19 @@ const TechStack = () => {
             </div>
 
             {/* Desktop: Grid layout */}
-            <div className="hidden sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-3 md:gap-4">
+            <div className="hidden sm:grid sm:grid-cols-4 lg:grid-cols-7 gap-2 md:gap-3">
               {techCategories.map((category, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`flex flex-col items-center space-y-2 px-3 md:px-4 py-3 md:py-4 rounded-xl md:rounded-2xl transition-all duration-300 ${
+                  className={`flex flex-col items-center space-y-1.5 px-2 md:px-3 py-2 md:py-3 rounded-lg md:rounded-xl transition-all duration-300 ${
                     index === currentIndex
                       ? "bg-[#3B82F6] text-white shadow-lg shadow-[#3B82F6]/50 neon-glow"
                       : "text-gray-300 hover:text-white hover:bg-white/10 glass-effect hover-neon"
                   }`}
                 >
-                  <span className="text-xl md:text-2xl">{category.icon}</span>
-                  <span className="font-medium text-xs md:text-sm text-center leading-tight">
+                  <span className="text-lg md:text-xl">{category.icon}</span>
+                  <span className="font-medium text-xs text-center leading-tight">
                     {category.title}
                   </span>
                 </button>

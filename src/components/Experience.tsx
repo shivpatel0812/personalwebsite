@@ -31,8 +31,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     title: "Undergraduate Research Assistant",
-    company:
-      "UVA School of Data Science – Professor Beak Visual Intelligence Laboratory",
+    company: "UVA Data Science Lab",
     period: "May 2023 – Present | Charlottesville, VA",
     image: "/images/uvads-building.png",
     description: [
@@ -44,7 +43,7 @@ const experiences: ExperienceItem[] = [
   },
   {
     title: "Teacher Assistant – Introduction to Data Science in R",
-    company: "UVA School of Data Science",
+    company: "UVA Data Science",
     period: "January 2025 – May 2025",
     description: [
       "Supported 300+ students in fundamental programming, held office hours, assisted lectures, and graded student assignments.",
