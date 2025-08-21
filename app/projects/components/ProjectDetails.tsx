@@ -559,7 +559,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       : project.title === "AI Business Card Analyzer"
                       ? "Manual business card data entry is time-consuming and error-prone, requiring users to manually type contact information from physical cards."
                       : project.title === "WellnessAI"
-                      ? "Fitness apps today treat health in isolation: calories in one app, workouts in another, sleep in a third. None of them reason across these factors to keep you on track. If you're stressed or short on sleep, they don't adapt your nutrition, training, or recovery plan. You're left to guess how to adjust, risking burnout or plateaus."
+                      ? "Fitness apps today treat health in isolation: calories in one app, workouts in another, sleep in a third. None of them reason across these factors to keep you on track. If you&apos;re stressed or short on sleep, they don&apos;t adapt your nutrition, training, or recovery plan. You&apos;re left to guess how to adjust, risking burnout or plateaus."
                       : "Video analysis and processing requires significant manual effort and lacks intelligent automation for content understanding and processing."}
                   </p>
                 </div>
@@ -581,7 +581,7 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       : project.title === "AI Business Card Analyzer"
                       ? "Developed an AI-powered application that uses OCR and NLP to automatically extract and analyze business card information, providing instant contact data with high accuracy."
                       : project.title === "WellnessAI"
-                      ? "WellnessAI 🏋️‍♂️🤖 is an agentic AI coach that reasons like a true trainer. It doesn't just track data — it connects the dots: Didn't sleep enough? → AI adjusts your macros and training intensity to keep progress steady. High stress week? → It suggests recovery protocols and nutrition tweaks to protect gains. Plateau in the gym? → It rebalances your split, recommends microcycle changes, and nudges sleep or diet improvements. WellnessAI continuously learns you and orchestrates all the levers — workouts, nutrition, sleep, stress, recovery — to make sure you still advance toward your goals."
+                      ? "WellnessAI 🏋️‍♂️🤖 is an agentic AI coach that reasons like a true trainer. It doesn&apos;t just track data — it connects the dots: Didn&apos;t sleep enough? → AI adjusts your macros and training intensity to keep progress steady. High stress week? → It suggests recovery protocols and nutrition tweaks to protect gains. Plateau in the gym? → It rebalances your split, recommends microcycle changes, and nudges sleep or diet improvements. WellnessAI continuously learns you and orchestrates all the levers — workouts, nutrition, sleep, stress, recovery — to make sure you still advance toward your goals."
                       : "Created an intelligent video processing platform that uses computer vision and machine learning to automatically analyze, process, and extract insights from video content."}
                   </p>
                 </div>
@@ -690,15 +690,15 @@ const ProjectDetails: React.FC<ProjectDetailsProps> = ({
                       What Makes WellnessAI Different
                     </h5>
                     <p className="text-gray-300 leading-relaxed text-xs lg:text-sm">
-                      WellnessAI doesn't just track your health — it balances
-                      the equation when one factor falls short. If you're
-                      stressed and short on sleep, your coach will proactively
-                      adjust your nutrition and training intensity to keep you
-                      progressing safely. If recovery is lagging, it increases
-                      focus on diet and mobility work. Instead of treating
-                      workouts, diet, and recovery as silos, WellnessAI connects
-                      them into one adaptive system that always works toward
-                      your goals.
+                      WellnessAI doesn&apos;t just track your health — it
+                      balances the equation when one factor falls short. If
+                      you&apos;re stressed and short on sleep, your coach will
+                      proactively adjust your nutrition and training intensity
+                      to keep you progressing safely. If recovery is lagging, it
+                      increases focus on diet and mobility work. Instead of
+                      treating workouts, diet, and recovery as silos, WellnessAI
+                      connects them into one adaptive system that always works
+                      toward your goals.
                     </p>
                   </div>
                 </div>
