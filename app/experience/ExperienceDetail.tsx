@@ -23,6 +23,9 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
   onImageClick,
 }) => {
   const [currentMobileSection, setCurrentMobileSection] = useState(0);
+  const [expandedSections, setExpandedSections] = useState<Set<number>>(
+    new Set()
+  );
 
   // Ensure selectedSectionIndex is within bounds
   useEffect(() => {
@@ -54,6 +57,16 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
       experience.details.length;
     setCurrentMobileSection(prev);
     onSectionSelect(prev);
+  };
+
+  const toggleSection = (sectionIndex: number) => {
+    const newExpanded = new Set(expandedSections);
+    if (newExpanded.has(sectionIndex)) {
+      newExpanded.delete(sectionIndex);
+    } else {
+      newExpanded.add(sectionIndex);
+    }
+    setExpandedSections(newExpanded);
   };
 
   const getSectionColor = () => {
@@ -99,6 +112,9 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
       </motion.div>
     );
   }
+
+  // Check if this is UDig experience (index 0)
+  const isUdigExperience = selectedIndex === 0;
 
   return (
     <motion.div
@@ -286,9 +302,10 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                     </h4>
                   </div>
                   <div className="space-y-2">
-                    {experience.details[currentMobileSection]?.points?.map(
-                      (point, index) => (
-                        <div key={index} className="flex items-start">
+                    {isUdigExperience ? (
+                      // UDig experience: Show custom one-liner + More Info button with all points
+                      <>
+                        <div className="flex items-start">
                           <span
                             className={`w-2 h-2 rounded-full mt-1.5 mr-2 flex-shrink-0 ${
                               getSectionColor() === "orange"
@@ -299,9 +316,77 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                             }`}
                           ></span>
                           <p className="text-xs text-gray-300 leading-relaxed">
-                            {point}
+                            {experience.details[currentMobileSection]
+                              ?.oneLiner || "Custom description coming soon..."}
                           </p>
                         </div>
+
+                        {experience.details[currentMobileSection]?.points &&
+                          experience.details[currentMobileSection].points
+                            .length > 0 && (
+                            <>
+                              <button
+                                onClick={() =>
+                                  toggleSection(currentMobileSection)
+                                }
+                                className={`w-full mt-3 px-3 py-2 rounded-lg text-xs font-medium transition-all duration-200 ${
+                                  expandedSections.has(currentMobileSection)
+                                    ? "bg-orange-700 text-white hover:bg-orange-600"
+                                    : "bg-orange-600 text-white hover:bg-orange-500"
+                                }`}
+                              >
+                                {expandedSections.has(currentMobileSection)
+                                  ? "Show Less"
+                                  : "More Info"}
+                              </button>
+
+                              {expandedSections.has(currentMobileSection) && (
+                                <div className="mt-3 space-y-2">
+                                  {experience.details[
+                                    currentMobileSection
+                                  ]?.points?.map((point, index) => (
+                                    <div
+                                      key={index}
+                                      className="flex items-start"
+                                    >
+                                      <span
+                                        className={`w-2 h-2 rounded-full mt-1.5 mr-2 flex-shrink-0 ${
+                                          getSectionColor() === "orange"
+                                            ? "bg-orange-400"
+                                            : getSectionColor() === "cyan"
+                                            ? "bg-cyan-400"
+                                            : "bg-blue-400"
+                                        }`}
+                                      ></span>
+                                      <p className="text-xs text-gray-300 leading-relaxed">
+                                        {point}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+                      </>
+                    ) : (
+                      // Other experiences: Show all points as before
+                      experience.details[currentMobileSection]?.points?.map(
+                        (point, index) => (
+                          <div key={index} className="flex items-start">
+                            <span
+                              className={`w-2 h-2 rounded-full mt-1.5 mr-2 flex-shrink-0 ${
+                                getSectionColor() === "orange"
+                                  ? "bg-orange-400"
+                                  : getSectionColor() === "cyan"
+                                  ? "bg-cyan-400"
+                                  : "bg-blue-400"
+                              }`}
+                            ></span>
+                            <p className="text-xs text-gray-300 leading-relaxed">
+                              {point}
+                            </p>
+                          </div>
+                        )
                       )
                     )}
                   </div>
@@ -386,8 +471,6 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                     ? "bg-orange-500"
                     : selectedIndex === 1
                     ? "bg-cyan-400"
-                    : selectedIndex === 2
-                    ? "bg-blue-500"
                     : "bg-blue-500"
                 }`}
               ></div>
@@ -416,24 +499,72 @@ const ExperienceDetail: React.FC<ExperienceDetailProps> = ({
                     "No title available"}
                 </h4>
                 <div className="text-sm text-gray-300">
-                  {experience.details[selectedSectionIndex]?.points?.map(
-                    (point, index) => (
-                      <div key={index} className="mb-2">
-                        <span
-                          className={`mr-2 ${
-                            selectedIndex === 0
-                              ? "text-orange-400"
-                              : selectedIndex === 1
-                              ? "text-cyan-400"
-                              : "text-blue-400"
-                          }`}
-                        >
-                          •
-                        </span>
-                        {point}
+                  {isUdigExperience ? (
+                    // UDig experience: Show custom one-liner + More Info button with all points
+                    <>
+                      <div className="mb-2">
+                        <span className="text-orange-400 mr-2">•</span>
+                        {experience.details[selectedSectionIndex]?.oneLiner ||
+                          "Custom description coming soon..."}
                       </div>
-                    )
-                  ) || <p className="text-gray-400">No details available</p>}
+
+                      {experience.details[selectedSectionIndex]?.points &&
+                        experience.details[selectedSectionIndex].points.length >
+                          0 && (
+                          <>
+                            <button
+                              onClick={() =>
+                                toggleSection(selectedSectionIndex)
+                              }
+                              className={`w-full mt-3 px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                                expandedSections.has(selectedSectionIndex)
+                                  ? "bg-orange-700 text-white hover:bg-orange-600"
+                                  : "bg-orange-600 text-white hover:bg-orange-500"
+                              }`}
+                            >
+                              {expandedSections.has(selectedSectionIndex)
+                                ? "Show Less"
+                                : "More Info"}
+                            </button>
+
+                            {expandedSections.has(selectedSectionIndex) && (
+                              <div className="mt-3 space-y-2">
+                                {experience.details[
+                                  selectedSectionIndex
+                                ]?.points?.map((point, index) => (
+                                  <div key={index} className="mb-2">
+                                    <span className="text-orange-400 mr-2">
+                                      •
+                                    </span>
+                                    {point}
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                          </>
+                        )}
+                    </>
+                  ) : (
+                    // Other experiences: Show all points as before
+                    experience.details[selectedSectionIndex]?.points?.map(
+                      (point, index) => (
+                        <div key={index} className="mb-2">
+                          <span
+                            className={`mr-2 ${
+                              selectedIndex === 0
+                                ? "text-orange-400"
+                                : selectedIndex === 1
+                                ? "text-cyan-400"
+                                : "text-blue-400"
+                            }`}
+                          >
+                            •
+                          </span>
+                          {point}
+                        </div>
+                      )
+                    ) || <p className="text-gray-400">No details available</p>
+                  )}
                 </div>
               </div>
             </div>

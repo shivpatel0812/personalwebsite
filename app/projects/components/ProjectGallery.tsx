@@ -510,19 +510,27 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
               <span className="w-8 h-8 bg-gradient-to-br from-[#3B82F6] to-[#06B6D4] rounded-full flex items-center justify-center mr-3 text-sm">
                 📱
               </span>
-              App Screenshots
+              {project.title === "WellnessAI"
+                ? "Mobile App Screenshots"
+                : "App Screenshots"}
             </h5>
             <span className="text-xs text-gray-400 bg-gray-800 px-3 py-1 rounded-full">
-              {project.title === "Cap@UVA" ? "React Native" : "Web App"}
+              {project.title === "Cap@UVA"
+                ? "React Native"
+                : project.title === "WellnessAI"
+                ? "Mobile App"
+                : "Web App"}
             </span>
           </div>
 
           <div className="relative">
-            {/* Large Image Display - Better aspect ratio for AI projects */}
+            {/* Large Image Display - Mobile-optimized for WellnessAI */}
             <div
               className={`relative w-full rounded-xl overflow-hidden shadow-2xl mb-6 cursor-pointer hover:scale-[1.02] transition-transform duration-300 ${
                 project.title === "Cap@UVA"
                   ? "h-80 sm:h-96 md:h-[600px]"
+                  : project.title === "WellnessAI"
+                  ? "h-96 sm:h-[500px] md:h-[600px] lg:h-[700px] max-w-md mx-auto"
                   : "aspect-[4/3] sm:aspect-[3/2] md:aspect-[16/10] lg:aspect-[16/9] max-h-[600px]"
               }`}
               onClick={() =>
@@ -541,6 +549,8 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 className={`${
                   project.title === "Cap@UVA"
                     ? "object-cover"
+                    : project.title === "WellnessAI"
+                    ? "object-contain"
                     : "object-contain"
                 } bg-gray-900`}
               />
@@ -637,7 +647,9 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
                 {project.title} Screenshot {uiImageIndex + 1}
               </h6>
               <p className="text-sm text-gray-300">
-                Application interface showing {project.title} functionality
+                {project.title === "WellnessAI"
+                  ? "Mobile app interface showing AI-powered wellness coaching features"
+                  : `Application interface showing ${project.title} functionality`}
               </p>
             </div>
           </div>
@@ -653,9 +665,13 @@ const ProjectGallery: React.FC<ProjectGalleryProps> = ({
             onClick={closeModal}
           >
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              {/* Main Image Display */}
+              {/* Main Image Display - Mobile-optimized for WellnessAI */}
               <div
-                className="relative w-[80%] h-[60vh] flex items-center justify-center"
+                className={`relative flex items-center justify-center ${
+                  project.title === "WellnessAI"
+                    ? "w-[90%] max-w-md h-[80vh]"
+                    : "w-[80%] h-[60vh]"
+                }`}
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Close button positioned relative to the image content */}

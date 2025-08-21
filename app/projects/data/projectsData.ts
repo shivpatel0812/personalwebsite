@@ -23,6 +23,59 @@ export const projects: Project[] = [
     github: undefined,
   },
   {
+    title: "WellnessAI",
+    description:
+      "🚩 The Problem\n\n" +
+      "Fitness apps today treat health in isolation: calories in one app, workouts in another, sleep in a third. None of them reason across these factors to keep you on track. If you're stressed or short on sleep, they don't adapt your nutrition, training, or recovery plan. You're left to guess how to adjust, risking burnout or plateaus.\n\n" +
+      "💡 The Solution\n\n" +
+      "WellnessAI 🏋️‍♂️🤖 is the first agentic AI coach that reasons like a true trainer. It doesn't just track data — it connects the dots:\n\n" +
+      "Didn't sleep enough? → AI adjusts your macros and training intensity to keep progress steady.\n\n" +
+      "High stress week? → It suggests recovery protocols and nutrition tweaks to protect gains.\n\n" +
+      "Plateau in the gym? → It rebalances your split, recommends microcycle changes, and nudges sleep or diet improvements.\n\n" +
+      "WellnessAI continuously learns you and orchestrates all the levers — workouts, nutrition, sleep, stress, recovery — to make sure you still advance toward your goals.\n\n" +
+      "⚡ Key Features\n" +
+      "🧠 Intelligent Adaptation\n\n" +
+      "Cross-Domain Reasoning: Links sleep, stress, diet, and workouts to make balanced recommendations.\n\n" +
+      "Dynamic Compensation: If one input slips (e.g., sleep), AI recalibrates others (e.g., nutrition + training).\n\n" +
+      "Persistent Memory: Learns your patterns and improves recommendations the longer you use it.\n\n" +
+      "🍎 Nutrition & Recovery\n\n" +
+      "Snap-to-Log Macros: Take a photo → instant breakdown and AI-calibrated adjustments.\n\n" +
+      "Stress & Sleep Aware: Recommends meal plans, hydration, or rest strategies that complement your recovery status.\n\n" +
+      "🏋️ Training Optimization\n\n" +
+      "AI-Suggested Progressions: Automatically scales reps/weights based on your readiness.\n\n" +
+      "Plateau Detection: Identifies stagnation early and deploys breakthrough strategies.\n\n" +
+      "Personalized Periodization: Builds workout cycles that flex with your lifestyle.",
+    technologies: [
+      "React Native",
+      "Spring Boot",
+      "Python",
+      "OpenAI API",
+      "Firebase",
+      "Computer Vision",
+    ],
+    images: [
+      "/wellnessai1.png",
+      "/wellnessai2.png",
+      "/wellnessai3.png",
+      "/wellnessai4.png",
+    ],
+    link: "https://github.com/shivpatel0812/AIGymtracker",
+    github: "https://github.com/shivpatel0812/AIGymtracker",
+  },
+  {
+    title: "AI Video Agent",
+    description:
+      "The AI Video Agent is an intelligent video processing application that leverages advanced AI technologies to analyze, summarize, and extract insights from video content.\n\n" +
+      "Built with cutting-edge machine learning models, the application can automatically transcribe speech, identify key topics, and generate comprehensive summaries of video content.\n\n" +
+      "The system features a user-friendly interface that allows users to upload videos and receive detailed analytics including sentiment analysis, topic extraction, and automated highlights.\n\n" +
+      "Using state-of-the-art natural language processing and computer vision techniques, the AI Video Agent transforms hours of video content into actionable insights and digestible summaries.\n\n" +
+      "The application is designed to help content creators, educators, and businesses efficiently process and understand large volumes of video data.",
+    technologies: ["Python", "OpenAI API", "Computer Vision", "NLP"],
+    images: ["/agentapppic1.png", "/agentapppic2.png", "/agentapppic3.png"],
+    link: "https://github.com/shivpatel0812/videoagent",
+    github: "https://github.com/shivpatel0812/videoagent",
+  },
+  {
     title: "AI Business Card Analyzer",
     description:
       "After attending several job fairs and collecting dozens of business cards, I struggled to keep track of who I met and what each company did. To solve this, I built the AI Business Card Analyzer, a web application that digitizes, summarizes, and organizes business cards using OpenAI's language models.\n\n" +
@@ -38,19 +91,6 @@ export const projects: Project[] = [
     ],
     link: "https://github.com/shivpatel0812/ai_business_analyzer",
     github: "https://github.com/shivpatel0812/ai_business_analyzer",
-  },
-  {
-    title: "AI Video Agent",
-    description:
-      "The AI Video Agent is an intelligent video processing application that leverages advanced AI technologies to analyze, summarize, and extract insights from video content.\n\n" +
-      "Built with cutting-edge machine learning models, the application can automatically transcribe speech, identify key topics, and generate comprehensive summaries of video content.\n\n" +
-      "The system features a user-friendly interface that allows users to upload videos and receive detailed analytics including sentiment analysis, topic extraction, and automated highlights.\n\n" +
-      "Using state-of-the-art natural language processing and computer vision techniques, the AI Video Agent transforms hours of video content into actionable insights and digestible summaries.\n\n" +
-      "The application is designed to help content creators, educators, and businesses efficiently process and understand large volumes of video data.",
-    technologies: ["Python", "OpenAI API", "Computer Vision", "NLP"],
-    images: ["/agentapppic1.png", "/agentapppic2.png", "/agentapppic3.png"],
-    link: "https://github.com/shivpatel0812/videoagent",
-    github: "https://github.com/shivpatel0812/videoagent",
   },
 ];
 

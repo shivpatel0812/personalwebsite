@@ -4,7 +4,7 @@ export interface ExperienceItem {
   location: string;
   period: string;
   description: string;
-  details: { title: string; points: string[] }[];
+  details: { title: string; points: string[]; oneLiner?: string }[];
   technologies: string[];
   image?: string;
   link?: string;
@@ -14,15 +14,17 @@ export interface ExperienceItem {
 
 export const experiences: ExperienceItem[] = [
   {
-    title: "Intern",
+    title: "Software Engineer Intern",
     company: "UDig",
     location: "Richmond, VA",
     period: "Summer 2025",
     description:
-      "Built a full-stack AI-powered product search application using CLIP-based vector embeddings, multi-view image fusion, real-time product availability, and location data to help store employees quickly find products across 300K+ catalog images.",
+      "Collaborated with 4 interns and company engineers to develop a Visual Product Identification Tool",
     details: [
       {
         title: "🎯 Project Goals & Scope",
+        oneLiner:
+          "Worked with a 4-person intern team in building an enterprise AI search platform that revolutionized how client store employees find products across 300K+ catalog images.",
         points: [
           "Built a full-stack AI-powered product search application that combines CLIP-based visual search with real-time product matching and availability checking. The system enables store employees to upload product images and instantly find similar products using advanced vector embeddings and intelligent ranking algorithms, significantly improving in-store search efficiency.",
           "Worked in a 4-person intern team alongside full-time engineers, participating in Agile sprints, daily standups, and code reviews.",
@@ -32,6 +34,8 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "🏗️ Enterprise Architecture & System Design",
+        oneLiner:
+          "Architected and developed a full-stack system design leveraging TypeScript, React, Vite, and Tailwind on the frontend; FastAPI, PostgreSQL, and pgVector on the backend; containerized with Docker and secured with Azure Authentication.”",
         points: [
           "Designed production-ready microservices architecture using FastAPI, PostgreSQL with pgvector, Docker orchestration, and React/TypeScript frontend with Redux state management for enterprise scalability.",
           "Built comprehensive authentication system with Azure AD OAuth2 integration, automatic token refresh, rate limiting, and role-based access control across all endpoints.",
@@ -41,6 +45,8 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "🤖 AI/ML Pipeline & Vector Search",
+        oneLiner:
+          "Built an image vectorization pipeline using OpenAI’s CLIP model and developed a similarity search algorithm that enables client associates to upload images and instantly find visually similar products. ",
         points: [
           "Developed a production CLIP (OpenAI based model) for embedding system converting 300K+ catalog images into 512-dimensional vectors with optimized batch processing and real-time performance monitoring.",
           "Implemented sophisticated multi-view image fusion algorithm using weighted cosine similarity with pgvector HNSW indexing, achieving 95%+ accuracy and sub-2-second latency.",
@@ -49,6 +55,8 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "💻 Full-Stack Frontend & Mobile Experience",
+        oneLiner:
+          "Built a production PWA with displays on web, mobile and tablet featuring advanced image handling, real-time updates, and 50+ reusable UI components.",
         points: [
           "Engineered a production PWA with mobile-first React architecture featuring drag-and-drop uploads, real-time camera input, image carousels, and responsive results display using Tailwind CSS.",
           "Implemented Redux Toolkit with Redux Persist for state management, React Query for server state, and 35+ reusable UI components including product comparison, ingestion controls, and location services.",
@@ -57,15 +65,19 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "⚙️ Backend, API, and Database",
+        oneLiner:
+          "Engineered a FastAPI backend with 25+ endpoints integrating PostgreSQL and 5 enterprise APIs to power full-stack workflows.",
         points: [
           "Built FastAPI backend with 25+ endpoints handling search, ingestion orchestration, vector generation, user analytics, and real-time product availability across Client's distributed network.",
-          "Designed sophisticated PostgreSQL database architecture using pgvector extension for storing 300K+ product images as 512-dimensional CLIP embeddings alongside comprehensive product metadata including vendor details, descriptions, categories, pricing, UPC codes, weights, and brand information with optimized HNSW indexing for sub-2-second similarity search.",
+          "Designed sophisticated PostgreSQL database architecture using pgvector extension for storing 400K+ product images as 512-dimensional CLIP embeddings alongside comprehensive product metadata including vendor details, descriptions, categories, pricing, UPC codes, weights, and brand information with optimized HNSW indexing for sub-2-second similarity search.",
           "Engineered seamless integration with 5+ Client enterprise APIs including product catalog, inventory management, location services, and real-time availability checking using OAuth2 authentication and automatic token refresh.",
           "Implemented advanced database operations including connection pooling, transaction management, batch vector insertions, and automated cleanup procedures for maintaining optimal performance across 400K+ product records.",
         ],
       },
       {
         title: "🔄 ETL Pipeline & Data Processing",
+        oneLiner:
+          "Optimized data ingestion to be 20× faster by building an async ETL pipeline, vectorizing 400K+ product images and storing embeddings with full product metadata in PostgreSQL/pgvector.",
         points: [
           "Built enterprise-grade ETL pipeline processing 400K+ product records with intelligent batch processing (250 product entries per batch), concurrent API calls (60 product entries, 120 images), and real-time progress tracking, extracting comprehensive product metadata including vendor details, descriptions, categories, pricing, UPC codes, weights, and brand information alongside image vectors.",
           "Implemented sophisticated data transformation engine handling CSV ingestion, CLIP image encoding, vector averaging across multiple image views, and automated data validation with resume capability.",
@@ -75,6 +87,8 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "🔧 DevOps & Production Infrastructure",
+        oneLiner:
+          "Configured CI pipelines with Pytest and Playwright to automatically run unit and E2E tests on each commit, containerizing services with Docker and integrating monitoring/logging for production.",
         points: [
           "Configured comprehensive CI/CD with Pytest for backend testing, Playwright for E2E testing, and 95%+ test coverage with automated deployment pipelines.",
           "Implemented real-time performance monitoring, system health checks, automated cleanup, and production logging across all services with comprehensive error handling and recovery mechanisms.",
@@ -82,6 +96,8 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "🔐 Enterprise Security & Authentication",
+        oneLiner:
+          "Implemented Azure AD OAuth2 user session and authentication management with other added ",
         points: [
           "Implemented Azure AD OAuth2 integration with automatic token refresh, persistent credentials, and enterprise-grade authentication across frontend and backend.",
           "Built secure file upload validation, rate limiting, request validation, and role-based access control for ingestion triggers and system administration.",
@@ -90,9 +106,11 @@ export const experiences: ExperienceItem[] = [
       },
       {
         title: "🚀 Performance & Enterprise Scalability",
+        oneLiner:
+          "Set up infastructure for deployment in 1,800+ stores and adoption by 35,000+ employees ",
         points: [
-          "Achieved sub-2-second similarity search across 300K+ images via optimized pgvector HNSW indexing, connection pooling, and vector caching strategies.",
-          "Built real-time performance monitoring with CPU/memory tracking, processing rate analytics, and automated system optimization for production load.",
+          "Achieved sub-2-second similarity search across 400K+ images via optimized pgvector HNSW indexing, connection pooling, and vector caching strategies.",
+          "Built real-time performance monitoring with CPU and GPU memory tracking, processing rate analytics, and automated system optimization for production load.",
           "Designed for enterprise scale with decoupled services, fault-tolerant queue handling, and horizontal scaling capabilities for multiple client locations.",
         ],
       },
