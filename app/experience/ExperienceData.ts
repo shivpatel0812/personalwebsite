@@ -155,7 +155,7 @@ export const experiences: ExperienceItem[] = [
       {
         title: "Project Scope",
         points: [
-          "In our edge computing setup, we used an NVIDIA Jetson device connected to an AWS Greengrass core for local compute and cloud synchronization. However, the system lacked a scalable security framework capable of authenticating devices, monitoring behavior, and blocking threats, especially when deploying to 20+ edge devices in disconnected environments.",
+          "In our edge computing setup, we used an NVIDIA Jetson device connected to an AWS Greengrass core for local compute and cloud synchronization. However, the system lacked a scalable security framework capable of authenticating devices, monitoring behavior, and blocking threats, especially when deploying to  edge devices in disconnected environments.",
           "The challenge was to design and implement a AWS cloud - based security solution that ensured device trust, runtime protection, and network resilience, while keeping performance overhead low.",
         ],
       },
@@ -185,8 +185,8 @@ export const experiences: ExperienceItem[] = [
           "To go beyond identity verification, I integrated:",
           "AWS Device Defender to track MQTT traffic and detect authentication anomalies",
           "Falco, an open-source kernel-level threat detection tool, to monitor system calls and flag suspicious activity (e.g., unexpected shell execution, privilege escalation)",
-          "A firewall management component that auto-blocks over 150+ untrusted IPs, updated regularly and deployed using iptables and ufw on the Jetson",
-          "Together, this system improved platform-level security and brought real-time visibility and mitigation to the edge device — boosting resilience by over 60%.",
+          "A restrictive Ubuntu firewall component, updated regularly and deployed using iptables and ufw on the Jetson",
+          "Together, this system improved platform-level security and brought real-time visibility and mitigation to the edge device — boosting resilience",
         ],
       },
     ],
