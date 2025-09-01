@@ -51,7 +51,7 @@ const Hero = () => {
                 Experience
               </Link>
               <Link
-                href="https://github.com/shivpatel2003"
+                href="https://github.com/shivpatel0812"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-r from-[#333] to-[#24292e] text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:shadow-[#333]/25 hover-glow text-center text-sm md:text-base flex items-center justify-center gap-2"
