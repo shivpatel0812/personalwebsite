@@ -80,7 +80,7 @@ const ContactPage = () => {
                 </h4>
                 <div className="flex space-x-3 md:space-x-4">
                   <a
-                    href="https://linkedin.com/in/shivpatel0812"
+                    href="https://www.linkedin.com/in/shivpatelcs/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-[#3B82F6] transition-colors duration-300 hover-glow p-2 rounded-lg text-sm md:text-base"
